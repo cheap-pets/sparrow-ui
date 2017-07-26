@@ -9,8 +9,7 @@
   "author": "scrollbar.ww",
   "files": [
     "src",
-    "dist",
-    "examples"
+    "dist"
   ],
   "keywords": [
     "sparrow"
