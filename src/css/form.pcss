@@ -1,0 +1,242 @@
+select,
+textarea,
+input[type="text"],
+input[type="search"], 
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="color"] {
+  height: 34px;
+  width: 175px;
+  max-width: 100%;
+  outline: none;
+  padding: 0 10px;
+  -webkit-appearance: none;
+  font-size: 14px;
+  border: 1px solid $transparent-dark;
+  border-radius: 0;
+  color: $text-black;
+  @mixin transition-background;
+}
+select:focus,
+textarea:focus,
+input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="reset"]):not([type="file"]):focus {
+  @mixin focus-shadow;
+}
+input:-ms-input-placeholder,
+::-moz-placeholder,
+::-webkit-input-placeholder {
+  color: $text-light-grey;
+}
+textarea {
+  padding: 10px;
+  height: 80px;
+  resize: none;
+}
+input.block,
+select.block,
+textarea.block {
+  width: 100%;
+}
+
+
+.form,
+.form-group {
+  font-size: 0;
+  padding: 10px;
+  display: block;
+}
+.form-inline {
+  font-size: 0;
+}
+.form-inline > * {
+  display: inline-block;
+}
+.form-group > * {
+  vertical-align: top;
+}
+label {
+  height: 34px;
+  line-height: 34px;
+  padding-right: 4px;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 13px;
+  color: $text-grey;
+}
+label.top {
+  display: block;
+}
+* + label:not(.top) {
+  padding-left: 10px;
+}
+.form-group.important label {
+  color: $text-black;
+}
+.form-group label:after {
+  color: transparent;
+  content: "*";
+}
+.form-group.important label:after {
+  color: $deepOrange500;
+}
+.form-group.invalid label {
+  color: $red500;
+}
+.form-group.invalid input {
+  border-color: $red500; 
+}
+.input-group {
+  font-size: 0;
+  position: relative;
+  white-space: nowrap;
+  display: inline-block;
+  background-color: $white;
+}
+.input-group > .input-icon {
+  height: 100%;
+  line-height: 34px;
+  display: inline-block;
+  font-size: 14px;
+}
+.input-group > input {
+  z-index: 20;
+  position: relative;
+  background: transparent;
+}
+.input-group > input:focus {
+  z-index: 21;
+}
+.inset-icon > input {
+  padding-right: 34px;
+}
+.input-icon {
+  width: 34px;
+  text-align: center;
+  border-radius: 0;
+}
+.inset-icon > .input-icon {
+  top: 0;
+  right: 0;
+  z-index: 10;
+  position: absolute;
+}
+.inset-icon > a.input-icon {
+  z-index: 30;
+}
+.inset-icon > .input-icon:first-child {
+  left: 0;
+}
+.inset-icon > .input-icon + input {
+  padding-left: 34px;
+  padding-right: 10px;
+}
+.input-icon.btn {
+  position: relative;
+  padding: 0;
+}
+.input-icon:not(.btn) {
+  color: $text-grey;
+}
+a.input-icon:not(.btn):active,
+a.input-icon.active:not(.btn),
+a.input-icon:hover:not(.btn) {
+  background-color: $transparent-dark;
+}
+a.input-icon:active,
+a.input-icon.active {
+  @mixin focus-shadow;
+}
+.input-group .btn {
+  z-index: 20;
+  border-radius: 0;
+  position: relative;
+}
+
+.form-group.fit {
+  display: table;
+}
+.form-inline > .fit {
+  display: inline-table;
+}
+.form-group.fit > label {
+  display: table-cell;
+  width: 1%;
+}
+.form-group.fit > input,
+.form-group.fit > textarea,
+.form-group.fit > select,
+.form-group.fit > .input-group {
+  display: table-cell;
+  width: 100%;
+}
+.form-group.fit > .input-group.inset-icon > input {
+  width: 100%;
+}
+.input-group.block > input {
+  width: 100%;
+}
+
+.mobile {
+  select,
+  textarea,
+  input[type="text"],
+  input[type="search"], 
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="url"],
+  input[type="tel"],
+  input[type="color"] {
+    width: 100%;
+  }
+  .form-group {
+    width: 100%;
+    display: table;
+  }
+  .list-group-item > .form-group {
+    padding: 0;
+  }
+}
+
+.edit-field,
+.edit-field > input {
+  border-color: transparent;
+  background: transparent;
+}
+.input-group.edit-field:hover,
+input.edit-field:hover {
+  background: #eee;
+}
+.edit-field > input:hover,
+input.edit-field:hover {
+  border-color: $border-dark;
+}
+.edit-field > input:focus,
+input.edit-field:focus {
+  background: #fff;
+}
+.edit-field > .input-icon {
+  display: none;
+}
+.edit-field:hover > .input-icon,
+input.edit-field:focus + .input-icon,
+.edit-field > input:focus + .input-icon {
+  z-index: 30;
+  display: block;
+}

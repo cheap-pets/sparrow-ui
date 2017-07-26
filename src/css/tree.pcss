@@ -1,0 +1,39 @@
+.tree,
+.tree-grid {
+  text-align: left;
+  background-color: $white;
+}
+.tree-node {
+  padding-left: 20px;
+  position: relative;
+}
+.tree > .tree-node,
+.tree-grid .tree-node {
+  padding-left: 0;
+}
+.tree-node-item {
+  display: block;
+  max-width: 100%;
+  line-height: 20px;
+  padding: 7px 15px;
+  color: $text-black;
+  font-size: 14px;
+  @mixin text-ellipsis;
+}
+.tree-node-item > .expand-toggle:after {
+  margin-left: 0;
+}
+.tree-node-item > .hover {
+  padding: 4px;
+}
+
+.tree-node-item > .hover:hover,
+a.tree-node-item:hover,
+a.tree-node-item:active {
+  color: $text-black;
+  background-color: $transparent-half-dark;
+}
+tree-node-item.active {
+  background-color: $bg-grey;
+  color: $white;
+}

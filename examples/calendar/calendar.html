@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+
+  <script type="text/javascript" src="../vue/vue.js"></script>
+  <script type="text/javascript" src="../vue/vuex.js"></script>
+  <style>
+    .content {
+      padding: 20px;
+    }
+  </style>
+  <title>calendar</title>
+</head>
+
+<body>
+  <div class="page">
+    <div class="content">
+      <h3>底部浮出面板选择（适合移动页面）</h3>
+      <div class="form-group">
+        <a class="btn" modal-action="open" modal-target="#mask-bottom">选择日期</a>
+      </div>
+      <h3>日期选择输入框（适合桌面浏览页面）</h3>
+      <div class="form-group">
+        <label>日期选择</label>
+        <my-calendar-input :value="dateValue" v-on:datechange="dateChange1"></my-calendar-input>
+      </div>
+    </div>
+    <div class="modal-mask" id="mask-bottom">
+      <div class="float-panel float-bottom">
+        <my-calendar class="shadow" :date-value="dateValue" v-on:datechange="dateChange2"></my-calendar>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../dist/sparrow.js"></script>
+  <script type="text/javascript">
+    var Calendar = sparrow.vue.Calendar;
+    var CalendarInput = sparrow.vue.CalendarInput;
+    //创建主对象
+    new Vue({
+      el: '.page',
+      data: {
+        dateValue: '2017-10-13'
+      },
+      components: {
+        'my-calendar': Calendar,
+        'my-calendar-input': CalendarInput
+      },
+      methods: {
+        dateChange2 (date) {
+          sparrow.showMessage(sparrow.formatDate(date, 'yyyy-MM-dd'));
+          sparrow.modalClose('#mask-bottom');
+          this.dateValue = date;
+        },
+        dateChange1 (date) {
+          sparrow.showMessage(sparrow.formatDate(date, 'yyyy-MM-dd'), 'success');
+        }
+      }
+    });
+  </script>
+</body>

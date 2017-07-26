@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+  <title>简单列表</title>
+  <style>
+    .content {
+      padding: 20px;
+    }
+    .content > div {
+      margin: 20px 0 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="content">
+      <h3>默认列表样式</h3>
+      <div class="list-group">
+        <div class="list-group-item">孙宗智</div>
+        <div class="list-group-item">刘志杰</div>
+        <div class="list-group-item active">张晓泉</div>
+        <div class="list-group-item">江磊</div>
+      </div>
+      <h3>背景交错的列表项</h3>
+      <div class="list-group alternant outline">
+        <div class="list-group-item">孙宗智</div>
+        <div class="list-group-item">刘志杰</div>
+        <div class="list-group-item">张晓泉</div>
+        <div class="list-group-item">江磊</div>
+      </div>
+      <h3>可交互元素的列表项</h3>
+      <div class="list-group outline-dotted">
+        <a class="list-group-item">张晓泉</a>
+        <a class="list-group-item">江磊</a>
+        <a class="list-group-item active">张兵</a>
+        <a class="list-group-item">陈学洋</a>
+      </div>
+      <h3>不要网格线</h3>
+      <div class="list-group outline gridless">
+        <a class="list-group-item">孙宗智</a>
+        <a class="list-group-item">刘志杰</a>
+        <a class="list-group-item">张晓泉</a>
+        <a class="list-group-item">江磊</a>
+      </div>
+      <h3>表示可钻取的右尖括号</h3>
+      <div class="list-group">
+        <a class="list-group-item drill">张晓泉</a>
+        <a class="list-group-item drill">江磊</a>
+        <a class="list-group-item drill">张兵</a>
+        <a class="list-group-item drill">陈学洋</a>
+      </div>
+      <h3>分隔、分组项</h3>
+      <div class="list-group">
+        <div class="divider">小刀会成员</div>
+        <a class="list-group-item">张晓泉</a>
+        <a class="list-group-item">江磊</a>
+        <div class="divider">天地会成员</div>
+        <a class="list-group-item">张兵</a>
+        <a class="list-group-item">陈学洋</a>
+      </div>
+    </div>
+  </div>
+</body>

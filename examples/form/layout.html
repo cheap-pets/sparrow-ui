@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+  <title>表单布局</title>
+  <style>
+    body {
+      margin: 20px;
+    }
+    label {
+      min-width: 70px;
+    }
+    .content {
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>标签与输入框</h3>
+  <h5>标签在左</h5>
+  <div class="form-group">
+    <label>单行文本</label><input type="text" placeholder="请输入文字">
+  </div>
+  <div class="form-group">
+    <label>多行文本</label><textarea placeholder="请输入文字"></textarea>
+  </div>
+  <h5>标签在上</h5>
+  <div class="form-group">
+    <label class="top">单行文本</label><input type="text" placeholder="请输入文字">
+  </div>
+  <h3>横向顺序排列</h3>
+  <div class="form-inline">
+    <div class="form-group">
+      <label>文本框1</label><input type="text" placeholder="请输入文字">
+    </div>
+    <div class="form-group">
+      <label>文本框2</label><input type="text" placeholder="请输入文字">
+    </div>
+    <div class="form-group">
+      <label>文本框3</label><input type="text" placeholder="请输入文字">
+    </div>
+    <div class="form-group">
+      <label>文本框4</label><input type="text" placeholder="请输入文字">
+    </div>
+    <div class="form-group">
+      <label>文本框5</label><input type="text" placeholder="请输入文字">
+    </div>
+  </div>
+  <h3>简易栅格布局</h3>
+  <div class="form-inline">
+    <div class="form-group col-1-3">
+      <label>文本框1</label><input type="text" placeholder="请输入文字">
+    </div>
+    <div class="form-group col-1-3">
+      <label>文本框2</label><input type="text" placeholder="请输入文字">
+    </div>
+    <div class="form-group col-1-3">
+      <label>文本框3</label><input type="text" placeholder="请输入文字">
+    </div>
+    <div class="form-group col-2-3">
+      <label>文本框2</label><input type="text" placeholder="请输入文字">
+    </div>
+    <div class="form-group col-1-3">
+      <label>文本框3</label><input type="text" placeholder="请输入文字">
+    </div>
+  </div>
+  <h3>自适应宽度的文本框组</h3>
+  <h5>没有标签</h5>
+  <div class="form-group">
+    <input class="block" type="text" placeholder="请输入文字">
+  </div>
+  <h5>有标签</h5>
+  <div class="form-group fit">
+    <label>文本框</label><input type="text" placeholder="请输入文字">
+  </div>
+  <h5>栅格布局</h5>
+  <div class="form-inline">
+    <div class="form-group col-1-3 fit">
+      <label>文本框1</label><input type="text" placeholder="请输入文字">
+    </div>
+    <div class="form-group col-1-3 fit">
+      <label>文本框2</label><input type="text" placeholder="请输入文字">
+    </div>
+    <div class="form-group col-2-3 fit">
+      <label>文本框3</label><input type="text" placeholder="请输入文字">
+    </div>
+    <div class="form-group col-1-3 fit">
+      <label>文本框4</label><input type="text" placeholder="请输入文字">
+    </div>
+  </div>
+</body>
+
+</html>

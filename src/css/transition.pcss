@@ -1,0 +1,25 @@
+@define-mixin transition-background {
+  transition: background .1s ease-in-out, box-shadow .1s ease-in-out;
+}
+@define-mixin transition-opacity {
+  transition: opacity .1s ease-in-out;
+}
+@define-mixin transition-transform {
+  transition: transform .3s ease-in-out;
+}
+@define-mixin transition-all {
+  transition: all .2s ease-in-out;
+}
+
+.transition-background {
+  @mixin transition-background;
+}
+.transition-opacity {
+  @mixin transition-opacity;
+}
+.transition-transform {
+  @mixin transition-transform;
+}
+.transition-all {
+  @mixin transition-all;
+}

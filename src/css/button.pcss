@@ -1,0 +1,229 @@
+$btn-primary-color: $blue500;
+$btn-primary-hover-color: $blue300;
+$btn-primary-active-color: $blue800;
+$btn-primary-disable-color: $blue200;
+$btn-primary-font-color: $text-white;
+
+$btn-submit-color: $green500;
+$btn-submit-hover-color: $green300;
+$btn-submit-active-color: $green800;
+$btn-submit-disable-color: $green200;
+$btn-submit-font-color: $text-white;
+
+$btn-negative-color: $red500;
+$btn-negative-hover-color: $red300;
+$btn-negative-active-color: $red800;
+$btn-negative-disable-color: $red200;
+$btn-negative-font-color: $text-white;
+
+.btn {
+  display: inline-block;
+  color: $text-black;
+  outline: none;
+  line-height: 20px;
+  border-radius: 3px;
+  text-align: center;
+  background-color: $transparent-dark;
+  font-size: 14px;
+  padding: 7px 10px;
+  border: 0;
+  cursor: default;
+  text-decoration: none;
+}
+.btn.block {
+  display: block;
+}
+.btn .badge {
+  background-color: $white;
+  color: $text-black;
+}
+.btn-outline {
+  padding: 6px 9px;
+  border: 1px solid $border-dark;
+}
+.btn.small,
+.btn-group.small .btn {
+  font-size: 12px;
+  padding: 4px 5px;
+}
+.btn-outline.small,
+.btn-group.small .btn-outline {
+  padding: 3px 4px;
+}
+.btn.large {
+  font-size: 18px;
+  padding: 10px 15px;
+}
+.btn-outline.large {
+  padding: 9px 14px;
+}
+.btn.active,
+.btn:hover,
+.btn:active {
+  color: $white;
+  border-color: transparent;
+  background-color: $bg-light-grey;
+}
+.btn.active {
+  background-color: $bg-grey;
+}
+
+.btn .caret {
+  margin-left: 4px;
+}
+.btn.active .caret:after,
+.btn:hover .caret:after,
+.btn:active .caret:after,
+.btn.caret.active:after,
+.btn.caret:hover:after,
+.btn.caret:active:after
+{
+  border-top-color: $white;
+}
+.btn:disabled,
+.btn[disabled]
+ {
+  border-color: transparent;
+  background-color: $bg-light-grey;
+}
+.btn-primary {
+  background-color: $btn-primary-color;
+  border-color: transparent;
+  color: $btn-primary-font-color;
+}
+.btn-primary .caret:not(.btn-outline):not(.btn-link):after,
+.btn-primary.caret:not(.btn-outline):not(.btn-link):after {
+  border-top-color: $btn-primary-font-color;
+}
+.btn-primary.btn-link,
+.btn-primary.btn-outline {
+  color: $btn-primary-color;
+}
+.btn-primary.btn-outline {
+  border: 1px solid $btn-primary-active-color;
+}
+.btn-primary.active,
+.btn-primary:hover,
+.btn-primary:active {
+  background-color: $btn-primary-hover-color;
+  color: $btn-primary-font-color;
+}
+.btn-primary.active {
+  background-color: $btn-primary-active-color;
+  color: $btn-primary-font-color;
+}
+.btn-primary:disabled,
+.btn-primary[disabled] {
+  background-color: $btn-primary-disable-color;
+}
+.btn-submit  {
+  background-color: $btn-submit-color;
+  border-color: transparent;
+  color: $btn-submit-font-color;
+}
+.btn-submit:not(.btn-outline):not(.btn-link) .caret:after,
+.btn-submit.caret:not(.btn-outline):not(.btn-link):after {
+  border-top-color: $btn-submit-font-color;
+}
+.btn-submit.btn-link,
+.btn-submit.btn-outline {
+  color: $btn-submit-color;
+}
+.btn-submit.btn-outline {
+  border-color: $btn-submit-active-color;
+}
+.btn-submit.active,
+.btn-submit:hover,
+.btn-submit:active {
+  background-color: $btn-submit-hover-color;
+  color: $btn-submit-font-color;
+}
+.btn-submit.active {
+  background-color: $btn-submit-active-color;
+}
+.btn-submit:disabled,
+.btn-submit[disabled] {
+  background-color: $btn-submit-disable-color;
+}
+.btn-negative {
+  background-color: $btn-negative-color;
+  border-color: transparent;
+  color: $btn-negative-font-color;
+}
+.btn-negative:not(.btn-outline):not(.btn-link) .caret:after,
+.btn-negative.caret:not(.btn-outline):not(.btn-link):after {
+  border-top-color: $btn-negative-font-color;
+}
+.btn-negative.btn-link,
+.btn-negative.btn-outline {
+  color: $btn-negative-color;
+}
+.btn-negative.btn-outline {
+  border-color: $btn-negative-active-color;
+}
+.btn-negative.active,
+.btn-negative:hover,
+.btn-negative:active {
+  background-color: $btn-negative-hover-color;
+  color: $btn-negative-font-color;
+}
+.btn-negative.active {
+  background-color: $btn-negative-active-color;
+}
+.btn-negative:disabled,
+.btn-negative[disabled] {
+  background-color: $btn-negative-disable-color;
+}
+.btn:active {
+  @mixin focus-shadow;
+}
+.btn:disabled,
+.btn[disabled] {
+  color: #eee;
+}
+.btn-outline {
+  background-color: $white;
+}
+.btn-link {
+  background-color: transparent;
+}
+.btn > .icon {
+  font-size: inherit;
+  line-height: normal;
+}
+.btn-group {
+  font-size: 0;
+  position: relative;
+  white-space: nowrap;
+  display: inline-block;
+}
+.btn-group > .btn:not(:only-child) {
+  border-radius: 0;
+}
+.btn-group > .btn:not(:first-child) {
+  border-left: 1px solid $transparent-dark;
+}
+.btn-group > .btn:not(:last-child) {
+  border-right: 0;
+}
+.btn-group > .btn:first-child {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.btn-group > .btn:last-child {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.btn-group + .btn-group,
+.btn-group + .btn {
+  margin-left: 5px;
+}
+.btn-group.fit > .btn {
+  display: table-cell;
+  width: 1%;
+}
+.btn.hidden {
+  visibility: visible;
+  display: none !important;
+}

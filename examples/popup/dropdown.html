@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+  <title>下拉框、下拉菜单</title>
+  <style>
+    .content {
+      padding: 20px;
+    }
+    .content>div {
+      margin: 20px 0 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="content">
+      <h5>注意：下拉列表不适合用在移动端页面！</h5>
+      <div>
+        <h3>下拉列表输入框</h3>
+        <div class="form-group">
+          <label>选择内容</label>
+          <div class="input-group inset-icon dropdown-group">
+            <input type="text" popup-action="open" :value="value" readonly>
+            <span class="input-icon caret"></span>
+            <div class="dropdown list-group" popup-action="close">
+              <a class="list-group-item" v-for="item in items" @click="clickItem(item)">{{item}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>下拉列表中包含分组</h3>
+        <div class="form-group">
+          <label>选择内容</label>
+          <div class="input-group inset-icon dropdown-group">
+            <input type="text" popup-action="open">
+            <span class="input-icon caret"></span>
+            <div class="dropdown list-group" popup-action="close">
+              <div class="divider">小刀会成员</div>
+              <a class="list-group-item">张晓泉</a>
+              <a class="list-group-item">江磊</a>
+              <div class="divider">天地会成员</div>
+              <a class="list-group-item">张兵</a>
+              <a class="list-group-item">陈学洋</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>往上方弹出</h3>
+        <div class="form-group">
+          <label>选择内容</label>
+          <div class="input-group inset-icon dropdown-group">
+            <input type="text" popup-action="open" :value="value" readonly>
+            <span class="input-icon caret"></span>
+            <div class="dropdown top list-group" popup-action="close">
+              <a class="list-group-item" v-for="item in items" @click="clickItem(item)">{{item}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>按钮下拉菜单</h3>
+        <div class="dropdown-group">
+          <a class="btn btn-primary" popup-action="open">下拉菜单<span class="caret"></span></a>
+          <div class="dropdown list-group" dropdown-action="close">
+            <a class="list-group-item">张晓泉</a>
+            <a class="list-group-item">江磊</a>
+            <div class="divider line"></div>
+            <a class="list-group-item">张兵</a>
+            <a class="list-group-item">陈学洋</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>分裂式按钮下拉菜单</h3>
+        <div class="dropdown-group">
+          <div class="btn-group">
+            <a class="btn btn-submit">分裂按钮</a>
+            <a class="btn btn-submit caret" popup-action="open"></a>
+          </div>
+          <div class="dropdown list-group" dropdown-action="close">
+            <a class="list-group-item">张晓泉</a>
+            <a class="list-group-item">江磊</a>
+            <div class="divider line"></div>
+            <a class="list-group-item">张兵</a>
+            <a class="list-group-item">陈学洋</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../vue/vue.js"></script>
+  <script type="text/javascript" src="../vue/vuex.js"></script>
+  <script type="text/javascript" src="../../dist/sparrow.js"></script>
+  <script type="text/javascript">
+    new Vue({
+      el: '.page',
+      data: {
+        value: '',
+        items: ['x', 'y', 'z']
+      },
+      methods: {
+        clickItem: function (item) {
+          this.value = item;
+        }
+      }
+    });
+  </script>
+</body>

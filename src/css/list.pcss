@@ -1,0 +1,77 @@
+.list-group {
+  margin: 0px;
+  padding: 0px; 
+  list-style: none;
+  text-align: left;
+  background-color: $white;
+}
+.list-group-eof {
+  visibility: hidden;
+  padding: 10px;
+  text-align: center;
+  color: $text-grey;
+  background-color: $transparent-dark;
+}
+.list-group-eof.active {
+  visibility: visible;
+}
+.list-group-item {
+  position: relative;
+  display: block;
+  line-height: 20px;
+  padding: 7px 15px;
+  font-size: 14px;
+  color: $text-black;
+  @mixin text-ellipsis;
+}
+.list-group-item:not(:first-child){
+  border-top: 1px dotted $border-light;
+}
+:not(.outline):not(.outline-dotted) > .list-group-item:last-child {
+  border-bottom: 1px dotted $border-light;
+}
+.alternant > .list-group-item:nth-of-type(even){
+  background-color: $transparent-tiny-dark;
+}
+.list-group-item.drill {
+  padding-right: 35px;
+}
+.list-group-item.drill:after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 25px;
+  content: "\e601";
+  color: $text-light-grey;
+  font-size: 16px;
+  font-family: 'sparrow-icon';
+}
+.list-group.gridless > .list-group-item {
+  border: 0;
+}
+
+a.list-group-item:active,
+a.list-group-item:hover {
+  color: $text-black;
+  background-color: $transparent-half-dark;
+}
+.list-group-item.active {
+  background-color: $bg-grey;
+  color: $white;
+}
+
+.divider + .list-group-item {
+  border-top: 0;
+}
+.list-group-item > .icon:first-child {
+  vertical-align: top;
+  margin-right: 5px;
+}
+.list-group-item p {
+  white-space: normal;
+  margin: 0;
+  font-size: 12px;
+  color: $text-grey;
+}

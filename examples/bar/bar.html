@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+  <title>工具条</title>
+    <style>
+    .content {
+      padding: 20px;
+    }
+    .content > div {
+      margin: 20px 0 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="bar header">
+      <div class="input-group inset-icon block">
+        <input type="text" placeholder="顶部整行搜索框（手机移动页面）">
+        <span class="input-icon icon icon-search"></span>
+      </div>
+    </div>
+    <div class="content">
+      <h3>搜索框和工具按钮</h3>
+      <div class="bar fit">
+        <div class="input-group inset-icon">
+          <input type="text" placeholder="输入文字">
+          <span class="input-icon icon icon-search"></span>
+        </div>
+        <a class="btn btn-link input-icon">
+        <span class="icon icon-camera"></span>
+      </a>
+      </div>
+      <h3>摆放按钮和输入框</h3>
+      <div class="bar">
+        <a class="btn">CREATE NEW <span class="icon icon-add"></span></a>
+        <div class="input-group inset-icon dropdown-group">
+          <input type="text" dropdown-action="toggle" readonly value="全部"><span class="input-icon caret"></span>
+          <div class="dropdown list-group">
+            <a class="list-group-item">x</a>
+            <a class="list-group-item">y</a>
+            <a class="list-group-item">z</a>
+          </div>
+        </div>
+      </div>
+      <h3>搜索框居右（适合 PC 站点）</h3>
+      <div class="bar">
+        <a class="btn">CREATE NEW <span class="icon icon-add"></span></a>
+        <div class="bar-right">
+          <div class="input-group inset-icon">
+            <input type="text">
+            <span class="input-icon icon icon-search"></span>
+          </div>
+        </div>
+      </div>
+      <h3>菜单栏</h3>
+      <div class="bar bar-menu">
+        <a class="btn btn-link"><span class="icon icon-doc"></span> CREATE NEW</a>
+        <a class="btn btn-link"><span class="icon icon-modify"></span> MODIFY</a>
+      </div>
+      <h3>透明背景下的居中的按钮组</h3>
+      <div class="bar bar-center transparent">
+        <div class="btn-group">
+          <a class="btn btn-primary">按钮一</a>
+          <a class="btn btn-outline">按钮二</a>
+          <a class="btn btn-outline">按钮三</a>
+        </div>
+      </div>
+      <h3>充满整行的小号按钮组</h3>
+      <div class="bar">
+        <div class="btn-group small fit">
+          <a class="btn btn-primary">按钮一</a>
+          <a class="btn btn-primary btn-outline">按钮二</a>
+          <a class="btn btn-primary btn-outline">按钮三</a>
+        </div>
+      </div>
+      <h3>均匀宽度且充满整行的按钮（无内边距）</h3>
+      <div class="bar bar-tab">
+        <a class="btn btn-link">Cancel</a>
+        <a class="btn btn-submit">Save</a>
+      </div>
+      <h3>底部图标工具栏</h3>
+    </div>
+    <div class="bar bar-tab footer">
+      <a class="btn btn-link btn-primary">
+        <span class="icon icon-safe"></span>
+        <p>safe</p>
+      </a>
+      <a class="btn btn-link btn-primary">
+        <span class="icon icon-call"></span>
+        <p>call</p>
+      </a>
+      <a class="btn btn-primary">
+        <span class="icon icon-camera"></span>
+        <p>camera</p>
+      </a>
+      <a class="btn btn-primary btn-link">
+        <span class="icon icon-city"></span>
+        <p>city</p>
+      </a>
+    </div>
+  </div>
+</body>

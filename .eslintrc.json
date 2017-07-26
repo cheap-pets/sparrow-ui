@@ -1,0 +1,83 @@
+{
+  "root": true,
+  "extends": "standard",
+  "plugins": [
+    "html",
+    "standard",
+    "promise"
+  ],
+  // 一些全局变量
+  "globals": {
+    "Vue": false,
+    "Vuex": false,
+    "VueRouter": false,
+    "define": false
+  },
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    //行尾必须有分号
+    "semi": [
+      "error",
+      "always"
+    ],
+    //控制缩进为2个字符
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    //字符串必须单引号
+    "quotes": [
+      "error",
+      "single"
+    ],
+    // 比较必须用三个等号警告
+    "eqeqeq": 1,
+    // 没有处理的异常回调警告
+    "handle-callback-err": 1,
+    // 没有赋值的new对象实例警告
+    "no-new": 1,
+    // 最后一行不是空白行警告
+    "eol-last": 1,
+    // 忽略一些空格的提示
+    "spaced-comment": [
+      0,
+      "always"
+    ],
+    // 提示函数括号前的空格
+    "space-before-function-paren": [
+      0,
+      "always"
+    ],
+    // 禁止使用 debugger 命令 
+    "no-debugger": 2,
+    // 对未使用的变量定义发出警告
+    "no-unused-vars": [
+      1,
+      {
+        "vars": "all",
+        "args": "none"
+      }
+    ],
+    // 对长度超过80长度的代码行进行警告，并忽略注释、字符串等情况
+    "max-len": [
+      1,
+      {
+        "code": 120,
+        "tabWidth": 2,
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ]
+  }
+}

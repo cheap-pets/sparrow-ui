@@ -1,0 +1,46 @@
+.table {
+  width: 100%;
+  display: table;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: $white;
+}
+.table tr {
+  color: $text-black;
+  border-bottom: 1px dotted $border-light;
+}
+.table thead > tr:last-child {
+  border-bottom: 2px solid $border-light;
+}
+.table[gridline="none"] tr {
+  border-bottom: 0;
+}
+.table[gridline="all"] td:not(:last-child) {
+  border-right: 1px dotted $border-light;
+}
+.table td,
+.table-cell {
+  padding: 7px 10px;
+  line-height: 20px;
+  vertical-align: top;
+}
+.table > thead th,
+.table > thead td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  @mixin strong;
+}
+.alternant > tbody > tr:nth-child(odd),
+.alternant > tr:nth-child(odd) {
+  background-color: $transparent-tiny-dark;
+}
+.table > tbody > tr.active,
+.table > tr.active {
+  color: $white;
+  background-color: $bg-grey;
+}
+.hover > tbody > tr:hover,
+.hover > tr:hover {
+  color: $text-black;
+  background-color: $transparent-half-dark;
+}

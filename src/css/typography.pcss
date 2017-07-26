@@ -1,0 +1,59 @@
+html {
+  font-family: "Arial","PingFang SC","Microsoft YaHei","微软雅黑","黑体","宋体",sans-serif;
+  color: $text-black;
+}
+
+* {
+  font-size: 14px;
+}
+
+@define-mixin strong {
+  font-weight: 600;
+}
+
+.strong {
+  @mixin strong;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @mixin strong;
+  color: $text-black;
+}
+h1 {
+  font-size: 32px;
+}
+h2 {
+  font-size: 24px;
+}
+h3 {
+  font-size: 20px;
+}
+h4 {
+  font-size: 16px;
+  margin: 15px 0;
+}
+h5 {
+  font-size: 14px;
+  margin: 10px 0;
+}
+h6 {
+  font-size: 12px;
+  margin: 10px 0;
+}
+
+@define-mixin text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.text-ellipsis {
+  @mixin text-ellipsis;
+}
+.lines-ellipsis {
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

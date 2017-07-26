@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+  <script type="text/javascript" src="../vue/vue.js"></script>
+  <script type="text/javascript" src="../vue/vuex.js"></script>
+  <title>树节点中包含按钮</title>
+  <style>
+    .content {
+      padding: 20px;
+    }
+    .tree-node-item {
+      transition: none;
+    }
+
+    .tree-node-item:hover {
+      padding-right: 36px;
+    }
+
+    .tree-node-item>.btn {
+      position: absolute;
+      width: 36px;
+      right: 0;
+      top: 0;
+      height: 36px;
+      border-radius: 0;
+      visibility: hidden;
+      color: #fff;
+      background-color: rgba(0, 0, 0, .3);
+      cursor: pointer;
+    }
+
+    .tree-node-item:hover>.btn {
+      visibility: visible;
+    }
+
+    .tree-node-item>.btn>.icon {
+      line-height: 36px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="content">
+      <h3>树节点中包含按钮</h3>
+      <div class="tree-grid outline" id="tree">
+        <tree-node v-for="node in roots" :node="node" :key="node.name" :level="0"></tree-node>
+      </div>
+    </div>
+  </div>
+  <script type="text/x-template" id="tree-node-template">
+    <div class="tree-node">
+      <a class="tree-node-item" :style="{paddingLeft: nodeIntent + 'px'}">
+        <span class="expand-toggle" :class="{expanded: expanded, hidden:!isFolder}" @click="toggle(node)"></span>
+        <span class="icon icon-ok"></span>
+        <span>{{node.name}}-{{level}}</span>
+        <a class="btn">
+          <span class="icon icon-option-hori"></span>
+        </a>
+      </a>
+      <div v-if="expanded">
+        <tree-node v-for="node in childNodes" :node="node" :key="node.name" :level="level+1"></tree-node>
+      </div>
+    </div>
+  </script>
+  <script type="text/javascript" src="../../dist/sparrow.js"></script>
+  <script type="text/javascript">
+    //随机生成树节点数据
+    function random(n) {
+      return Math.ceil(Math.random() * (n));
+    }
+    var maxLevel = random(6);
+    var count = 0;
+    function gen(level, pName) {
+      var arr = [];
+      for (var i = 0, len = random(10); i < len; i++) {
+        count++;
+        var name = pName + '_' + i;
+        var node = {
+          name: name
+        }
+        if (level < maxLevel) {
+          node.childNodes = gen(level + 1, name);
+          node.expanded = level < 2 && node.childNodes.length;
+        }
+        arr.push(node);
+      }
+      return arr;
+    }
+    var roots = gen(1, 'node');
+    sparrow.showMessage('节点总数：' + count);
+
+    //利用 vuex 创建store
+    const store = new Vuex.Store({
+      state: {
+        roots: roots
+      },
+      mutations: {
+        toggleNode: function (state, node) {
+          if (node.expanded) {
+            node.expanded = false;
+          } else {
+            if (node.childNodes && node.childNodes.length) {
+              node.expanded = true;
+            }
+          }
+        }
+      }
+    });
+    //全局注册树组件
+    Vue.component('tree-node', {
+      template: '#tree-node-template',
+      props: ['node', 'level'],
+      computed: {
+        expanded: function () {
+          return !!this.node.expanded;
+        },
+        nodeIntent: function () {
+          return this.level * 20 + 15;
+        },
+        childNodes: function () {
+          return this.node.childNodes;
+        },
+        isFolder: function () {
+          return this.childNodes && this.childNodes.length;
+        }
+      },
+      methods: {
+        toggle: function (node) {
+          this.$store.commit('toggleNode', node);
+        }
+      }
+    });
+    new Vue({
+      store: store,
+      el: '#tree',
+      computed: {
+        roots: function () {
+          return this.$store.state.roots;
+        }
+      }
+    });
+  </script>
+</body>

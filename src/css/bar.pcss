@@ -1,0 +1,79 @@
+.bar {
+  font-size: 0;
+  display: block;
+  height: 44px;
+  white-space: nowrap;
+  overflow-y: visible;
+  position: relative;
+  background-color: rgba(240, 240, 240, 1);
+  padding: 5px;
+}
+.bar.header,
+.bar.footer {
+  position: absolute;
+}
+.bar-center {
+  text-align: center;
+}
+.bar-right {
+  float: right;
+}
+.bar input:not(:first-child),
+.bar .input-group:not(:first-child),
+.bar .btn:not(:first-child),
+.bar .btn-group:not(:first-child) {
+  margin-left: 5px;
+}
+.bar .btn-group.small {
+  margin-top: 3px;
+}
+.bar .btn-group > .btn,
+.bar .input-group > input {
+  margin-left: 0;
+  margin-top: 0
+}
+.bar > .fit {
+  width: 100%;
+}
+.bar.fit {
+  display: table;
+  width: 100%;
+}
+.bar.fit > * {
+  display: table-cell
+}
+.bar.fit input {
+  width: 100%;
+}
+
+.bar-menu {
+  height: 34px;
+  padding: 0 5px;
+}
+.bar-tab {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  padding: 0;
+}
+.bar-tab > * {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 1%;
+  height: 100%;
+  padding: 0;
+}
+.bar-tab > .btn > p {
+  line-height: 14px;
+  font-size: 12px;
+  margin: 0; 
+}
+
+.bar.bar-tab > *,
+.bar.bar-menu > *,
+.bar.bar-tab > .btn,
+.bar.bar-menu > .btn {
+  border-radius: 0;
+  margin-left: 0;
+}

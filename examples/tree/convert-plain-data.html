@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+  <script type="text/javascript" src="../vue/vue.js"></script>
+  <script type="text/javascript" src="../vue/vuex.js"></script>
+  <title>转换数组为树结构</title>
+  <style>
+    .content {
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="content">
+      <h3>转换数组为树结构</h3>
+      <div class="tree-grid" id="tree">
+        <tree-node v-for="node in roots" :node="node" :key="node.id" :level="0"></tree-node>
+      </div>
+    </div>
+  </div>
+  <script type="text/x-template" id="tree-node-template">
+    <div class="tree-node">
+      <a class="tree-node-item" :style="{paddingLeft: nodeIntent + 'px'}">
+        <span class="expand-toggle" :class="{expanded: expanded, hidden:!isFolder}" @click="toggle(node)"></span>
+        <span class="icon icon-ok"></span>
+        <span>{{node.name}}</span>
+      </a>
+      <div v-if="expanded">
+        <tree-node v-for="node in childNodes" :node="node" :key="node.id" :level="level+1"></tree-node>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/javascript" src="../../dist/sparrow.js"></script>
+  <script type="text/javascript">
+    //随机生成树节点列表数据
+    function random(n) {
+      return Math.ceil(Math.random() * (n));
+    }
+    var maxLevel = random(6); //最多 6 级目录
+    var arr = [];
+    var nodeId = 0;
+
+    function gen(level, pName, pid) {
+      for (var i = 0, len = random(5); i < len; i++) {
+        var name = pName + '_' + nodeId;
+        nodeId = nodeId + 2;
+        var node = {
+          id: nodeId,
+          name: name,
+          pid: pid,
+          expanded: level < 2
+        };
+        if (level < maxLevel) {
+          gen(level + 1, name, nodeId);
+        }
+        arr.push(node);
+      }
+    }
+    gen(1, 'node', null);
+
+    sparrow.showMessage('节点总数：' + arr.length);
+
+    //将数组保存到对象，建立索引
+    var nodes = {};
+    var roots = [];
+    for (var i = 0, len = arr.length; i < len; i++) {
+      var node = arr[i];
+      nodes[node.id] = node;
+      if (node.pid === null) {
+        roots.push(node);
+      }
+    }
+    //遍历索引，建立节点上下级关系
+    for (var nodeId in nodes) {
+      var node = nodes[nodeId];
+      var pid = node.pid;
+      if (pid !== null && nodes[pid]) {
+        var p = nodes[pid];
+        if (!p.childNodes) {
+          p.childNodes = [];
+        }
+        p.childNodes.push(node);
+      }
+    }
+
+    //利用 vuex 创建store
+    var store = new Vuex.Store({
+      state: {
+        roots: roots
+      },
+      mutations: {
+        toggleNode: function (state, node) {
+          if (node.expanded) {
+            node.expanded = false;
+          } else {
+            if (node.childNodes && node.childNodes.length) {
+              node.expanded = true;
+            }
+          }
+        }
+      }
+    });
+    //全局注册树组件
+    Vue.component('tree-node', {
+      template: '#tree-node-template',
+      props: ['node', 'level'],
+      computed: {
+        expanded: function () {
+          return !!this.node.expanded;
+        },
+        nodeIntent: function () {
+          return this.level * 20 + 15;
+        },
+        childNodes: function () {
+          return this.node.childNodes;
+        },
+        isFolder: function () {
+          return this.childNodes && this.childNodes.length;
+        }
+      },
+      methods: {
+        toggle: function (node) {
+          this.$store.commit('toggleNode', node);
+        }
+      }
+    });
+    new Vue({
+      store: store,
+      el: '#tree',
+      computed: {
+        roots: function () {
+          return this.$store.state.roots;
+        }
+      }
+    });
+  </script>
+</body>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+  <title>表格</title>
+  <style>
+    .content {
+      padding: 20px;
+    }
+    .content>table {
+      margin: 20px 0 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="content">
+      <h3>默认表格样式</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>2</td>
+            <td>3</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+          </tr>
+          <tr>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+          </tr>
+          <tr>
+            <td>G</td>
+            <td>H</td>
+            <td>I</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>背景交错的表格</h3>
+      <table class="table alternant">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>2</td>
+            <td>3</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+          </tr>
+          <tr>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+          </tr>
+          <tr>
+            <td>G</td>
+            <td>H</td>
+            <td>I</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>鼠标悬停效果的表格行</h3>
+      <table class="table hover">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>2</td>
+            <td>3</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+          </tr>
+          <tr class="active">
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+          </tr>
+          <tr>
+            <td>G</td>
+            <td>H</td>
+            <td>I</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>没有格线的表格</h3>
+      <table class="table" gridline="none">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>2</td>
+            <td>3</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+          </tr>
+          <tr>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+          </tr>
+          <tr>
+            <td>G</td>
+            <td>H</td>
+            <td>I</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>全部格线的表格</h3>
+      <table class="table outline" gridline="all">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>2</td>
+            <td>3</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+          </tr>
+          <tr>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+          </tr>
+          <tr>
+            <td>G</td>
+            <td>H</td>
+            <td>I</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>

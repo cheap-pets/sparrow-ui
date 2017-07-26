@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+  <title>输入框组</title>
+  <style>
+    body {
+      margin: 20px;
+    }
+    .content {
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>带标签的输入框</h3>
+  <div class="form-group">
+    <label>普通标签</label><input type="text" placeholder="请输入文字">
+  </div>
+  <div class="form-group important">
+    <label>必填内容</label><input type="text" placeholder="请输入文字">
+  </div>
+  <div class="form-group invalid">
+    <label>无效内容</label><input type="text" placeholder="请输入文字" value="无效的内容">
+  </div>
+  <h3>带图标的输入框组</h3>
+  <div class="form-group">
+    <label>下拉箭头</label>
+    <div class="input-group inset-icon">
+      <input type="text"><span class="input-icon caret"></span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>其他图标</label>
+    <div class="input-group inset-icon">
+      <input type="text"><span class="input-icon icon icon-wifi"></span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>图标在前</label>
+    <div class="input-group inset-icon">
+      <span class="input-icon icon icon-apps"></span><input type="text">
+    </div>
+  </div>
+  <h3>带图标按钮的输入框</h3>
+  <div class="form-group">
+    <label>按钮在前</label>
+    <div class="input-group inset-icon">
+      <a class="input-icon icon icon-doc"></a><input type="text">
+    </div>
+  </div>
+  <div class="form-group">
+    <label>按钮在后</label>
+    <div class="input-group inset-icon">
+      <input type="text">
+      <a class="input-icon icon icon-wifi"></a>
+    </div>
+  </div>
+  <h3>下拉选择输入框</h3>
+  <div class="form-group">
+    <label>下拉选择</label>
+    <div class="input-group inset-icon dropdown-group">
+      <input type="text" dropdown-action="toggle" readonly><span class="input-icon caret"></span>
+      <div class="dropdown list-group">
+        <a class="list-group-item">x</a>
+        <a class="list-group-item">y</a>
+        <a class="list-group-item">z</a>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>覆盖测试</label>
+    <div class="input-group inset-icon dropdown-group">
+      <input type="text" dropdown-action="open" readonly><span class="input-icon caret"></span>
+      <div class="dropdown list-group" dropdown-action="close">
+        <a class="list-group-item">x</a>
+        <a class="list-group-item">y</a>
+        <a class="list-group-item">z</a>
+      </div>
+    </div>
+  </div>
+  <h3>各种自定义按钮</h3>
+  <div class="form-inline">
+    <div class="form-group">
+      <div class="input-group">
+        <input type="text">
+        <a class="btn btn-primary input-icon">
+          <span class="icon icon-videocam"></span>
+        </a>
+        <a class="btn input-icon">
+          <span class="icon icon-close"></span>
+        </a>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group dropdown-group">
+        <input type="text">
+        <a class="btn btn-submit" dropdown-action="open" dropdown-target=".dropdownx">分类选择<span class="caret"></span></a>
+        <div class="dropdown dropdownx top list-group right" style="width: 200px">
+          <a class="list-group-item">x</a>
+          <a class="list-group-item">y</a>
+          <a class="list-group-item">z</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="../../dist/sparrow.js"></script>
+</body>

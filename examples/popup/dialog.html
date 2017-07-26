@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+  <title>对话框</title>
+  <style>
+    .content {
+      padding: 20px;
+    }
+    .content>div {
+      margin: 20px 0 30px;
+    }
+    .btn {
+      min-width: 88px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="content">
+      <div>
+        <h5 class="text-success">请分别用桌面和手机模式试试！</h5>
+        <h3>对话框与浮动消息提示</h3>
+        <div>
+          <button class="btn btn-primary" @click="doAlert">ALERT</button>
+          <button class="btn btn-submit" @click="doConfirm">CONFIRM</button>
+          <button class="btn btn-negative" @click="doWarn">WARN</button>
+        </div>
+      </div>
+      <div>
+        <h3>自定义对话框</h3>
+        <div>
+          <button class="btn btn-primary btn-outline" modal-action="open" modal-target="#my-dialog">自定义对话框</button>
+        </div>
+      </div>
+      <div>
+        <h3>浮动提示</h3>
+        <div>
+          <button class="btn btn-primary" @click="showFloatInfo">消息提示</button>
+          <button class="btn btn-submit" @click="showFloatSuccess">成功提示</button>
+          <button class="btn btn-negative" @click="showFloatWarning">错误提示</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-mask" id="my-dialog">
+    <div class="dialog" style="width: 500px; height: 400px;">
+      <div class="dialog-header">
+        自定义对话框
+        <a class="dialog-close-btn" modal-action="close"></a>
+      </div>
+      <div class="dialog-body">
+        <div class="form-group">
+          <label>文本框1</label><input type="text" placeholder="请输入文字">
+        </div>
+        <div class="form-group">
+          <label>文本框2</label><input type="text" placeholder="请输入文字">
+        </div>
+        <div class="form-group">
+          <label>文本框3</label><input type="text" placeholder="请输入文字">
+        </div>
+        <div class="form-group">
+          <label>文本框4</label><input type="text" placeholder="请输入文字">
+        </div>
+        <div class="form-group">
+          <label>文本框5</label><input type="text" placeholder="请输入文字">
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <a class="btn btn-primary btn-ok" modal-action="close">确定</a>
+        <a class="btn btn-cancel btn-link" modal-action="close">取消</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../vue/vue.js"></script>
+  <script type="text/javascript" src="../vue/vuex.js"></script>
+  <script type="text/javascript" src="../../dist/sparrow.js"></script>
+  <script type="text/javascript">
+    new Vue({
+      el: '.page',
+      methods: {
+        doAlert: function () {
+          sparrow.alert('一般提示', function (btn) {
+            sparrow.showMessage(btn);
+          });
+        },
+        doConfirm: function () {
+          sparrow.confirm('确认提示', function (btn) {
+            sparrow.showMessage(btn, 'success');
+          });
+        },
+        doWarn: function () {
+          sparrow.warn('确认警告', function (btn) {
+            sparrow.showMessage(btn, 'warn');
+          });
+        },
+        showFloatInfo: function () {
+          sparrow.showMessage('消息提示');
+        },
+        showFloatSuccess: function () {
+          sparrow.showMessage('成功提示', 'success');
+        },
+        showFloatWarning: function () {
+          sparrow.showMessage('错误提示', 'warn');
+        },
+        openDialog: function () {
+
+        }
+      }
+    });
+  </script>
+</body>

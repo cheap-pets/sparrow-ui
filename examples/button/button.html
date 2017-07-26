@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+  <title>Buttons</title>
+  <style>
+    .content {
+      padding: 20px;
+    }
+    body>div {
+      margin: 20px 20px 30px;
+    }
+
+    #normal .btn {
+      width: 88px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="normal">
+    <h3>样式与状态</h3>
+    <h5>默认样式</h5>
+    <div>
+      <a class="btn">DEFAULT</a>
+      <a class="btn btn-link">LINK</a>
+      <a class="btn btn-outline">OUTLINE</a>
+      <a class="btn active">ACTIVE</a>
+      <a class="btn" disabled>DISABLED</a>
+    </div>
+    <h5>主要动作样式</h5>
+    <div>
+      <a class="btn btn-primary">PRIMARY</a>
+      <a class="btn btn-primary btn-link">LINK</a>
+      <a class="btn btn-primary btn-outline">OUTLINE</a>
+      <a class="btn btn-primary active">ACTIVE</a>
+      <a class="btn btn-primary" disabled>DISABLED</a>
+    </div>
+    <h5>提交动作样式</h5>
+    <div>
+      <a class="btn btn-submit">SUBMIT</a>
+      <a class="btn btn-submit btn-link">LINK</a>
+      <a class="btn btn-submit btn-outline">OUTLINE</a>
+      <a class="btn btn-submit active">ACTIVE</a>
+      <a class="btn btn-submit" disabled>DISABLED</a>
+    </div>
+    <h5>负面动作样式</h5>
+    <div>
+      <a class="btn btn-negative">NEGATIVE</a>
+      <a class="btn btn-negative btn-link">LINK</a>
+      <a class="btn btn-negative btn-outline">OUTLINE</a>
+      <a class="btn btn-negative active">ACTIVE</a>
+      <a class="btn btn-negative" disabled>DISABLED</a>
+    </div>
+  </div>
+  <div>
+    <h3>各种尺寸</h3>
+    <div>
+      <a class="btn btn-outline small">小号按钮</a>
+      <a class="btn btn-primary">中号按钮</a>
+      <a class="btn btn-submit large">大号按钮</a>
+    </div>
+    <p></p>
+    <div>
+      <a class="btn btn-negative block">充满整行</a>
+    </div>
+  </div>
+  <div>
+    <h3>箭头和图标</h3>
+    <div>
+      <a class="btn btn-outline">TRIANGLE <span class="caret"></span></a>
+      <a class="btn btn-submit">ICON <span class="icon icon-safe"></span></a>
+      <a class="btn">BADGE <span class="badge">10</span></a>
+    </div>
+  </div>
+  <div>
+    <h3>按钮组</h3>
+    <div>
+      <div class="btn-group">
+        <a class="btn btn-outline">按钮一</a>
+        <a class="btn btn-outline">按钮二</a>
+        <a class="btn btn-outline">按钮三</a>
+      </div>
+      <div class="btn-group small">
+        <a class="btn btn-primary">小按钮四</a>
+        <a class="btn btn-primary btn-outline">小按钮五</a>
+        <a class="btn btn-primary btn-outline">小按钮六</a>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h3>按钮下拉菜单</h3>
+    <div class="dropdown-group">
+      <a class="btn btn-action" dropdown-action="open" readonly>下拉选择<span class="caret"></span></a>
+      <div class="dropdown list-group">
+        <a class="list-group-item">x</a>
+        <a class="list-group-item">y</a>
+        <a class="list-group-item">z</a>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h3>分裂式按钮下拉菜单</h3>
+    <div class="dropdown-group">
+      <div class="btn-group">
+        <a class="btn btn-primary">分裂按钮</a>
+        <a class="btn btn-primary caret" popup-action="open"></a>
+      </div>
+      <div class="dropdown top list-group" dropdown-action="close">
+        <a class="list-group-item">张晓泉</a>
+        <a class="list-group-item">江磊</a>
+        <div class="divider line"></div>
+        <a class="list-group-item">张兵</a>
+        <a class="list-group-item">陈学洋</a>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="../../dist/sparrow.js"></script>
+</body>

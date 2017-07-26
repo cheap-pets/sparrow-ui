@@ -1,0 +1,33 @@
+.badge {
+  line-height: 16px;
+  padding: 0 5px;
+  background-color: $bg-light-grey;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.caret:after,
+.expand-toggle:after {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.caret:after {
+  triangle: pointing-down;
+	width: 8px;
+  height: 4px;
+	background-color: $bg-grey;
+}
+
+.expand-toggle:after {
+  triangle: equilateral pointing-right;
+	width: 8px;
+  cursor: pointer;
+	background-color: $bg-grey;
+}
+.expand-toggle.expanded:after {
+  triangle: equilateral pointing-down;
+	width: 8px;
+	background-color: $bg-grey;
+}

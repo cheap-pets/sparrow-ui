@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+  <title>浮动面板</title>
+  <style>
+    .content {
+      padding: 20px;
+    }
+    .content>div {
+      margin: 20px 0 30px;
+    }
+    .btn {
+      min-width: 88px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="content">
+      <div>
+        <h3>各种方向浮出</h3>
+        <div>
+          <button class="btn btn-primary btn-outline" modal-action="open" modal-target="#mask-top">上方</button>
+          <button class="btn btn-primary btn-outline" modal-action="open" modal-target="#mask-bottom">下方</button>
+          <button class="btn btn-primary btn-outline" modal-action="open" modal-target="#mask-left">左方</button>
+          <button class="btn btn-primary btn-outline" modal-action="open" modal-target="#mask-right">右方</button>
+        </div>
+      </div>
+      <div>
+        <h3>没有遮罩层</h3>
+        <div>
+          <button class="btn btn-primary btn-outline" popup-action="open" popup-target="#float-top">上方</button>
+          <button class="btn btn-primary btn-outline" popup-action="open" popup-target="#float-bottom">下方</button>
+          <button class="btn btn-primary btn-outline" popup-action="open" popup-target="#float-left">左方</button>
+          <button class="btn btn-primary btn-outline" popup-action="open" popup-target="#float-right">右方</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-mask" id="mask-top">
+      <div class="float-panel float-top">
+        <div class="list-group outline">
+          <a class="list-group-item">张晓泉</a>
+          <a class="list-group-item">江磊</a>
+          <a class="list-group-item">张兵</a>
+          <a class="list-group-item">陈学洋</a>
+        </div>
+      </div>
+    </div>
+    <div class="modal-mask" id="mask-bottom">
+      <div class="float-panel float-bottom">
+        <div class="list-group outline">
+          <a class="list-group-item">张晓泉</a>
+          <a class="list-group-item">江磊</a>
+          <a class="list-group-item">张兵</a>
+          <a class="list-group-item">陈学洋</a>
+        </div>
+      </div>
+    </div>
+    <div class="modal-mask" id="mask-left">
+      <div class="float-panel float-left">
+        <div class="list-group">
+          <a class="list-group-item">张晓泉</a>
+          <a class="list-group-item">江磊</a>
+          <a class="list-group-item">张兵</a>
+          <a class="list-group-item">陈学洋</a>
+        </div>
+      </div>
+    </div>
+    <div class="modal-mask" id="mask-right">
+      <div class="float-panel float-right">
+        <div class="list-group">
+          <a class="list-group-item">张晓泉</a>
+          <a class="list-group-item">江磊</a>
+          <a class="list-group-item">张兵</a>
+          <a class="list-group-item">陈学洋</a>
+        </div>
+      </div>
+    </div>
+    <div class="float-panel float-top" id="float-top" popup>
+      <div class="list-group outline" popup-action="close">
+        <a class="list-group-item">张晓泉</a>
+        <a class="list-group-item">江磊</a>
+        <a class="list-group-item">张兵</a>
+        <a class="list-group-item">陈学洋</a>
+      </div>
+    </div>
+    <div class="float-panel float-bottom" id="float-bottom" popup>
+      <div class="list-group outline" popup-action="close">
+        <a class="list-group-item">张晓泉</a>
+        <a class="list-group-item">江磊</a>
+        <a class="list-group-item">张兵</a>
+        <a class="list-group-item">陈学洋</a>
+      </div>
+    </div>
+    <div class="float-panel float-left" id="float-left" popup>
+      <div class="list-group" popup-action="close">
+        <a class="list-group-item">张晓泉</a>
+        <a class="list-group-item">江磊</a>
+        <a class="list-group-item">张兵</a>
+        <a class="list-group-item">陈学洋</a>
+      </div>
+    </div>
+    <div class="float-panel float-right" id="float-right" popup>
+      <div class="list-group" popup-action="close">
+        <a class="list-group-item">张晓泉</a>
+        <a class="list-group-item">江磊</a>
+        <a class="list-group-item">张兵</a>
+        <a class="list-group-item">陈学洋</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../vue/vue.js"></script>
+  <script type="text/javascript" src="../vue/vuex.js"></script>
+  <script type="text/javascript" src="../../dist/sparrow.js"></script>
+  <script type="text/javascript">
+    new Vue({
+      el: '.page',
+      methods: {
+      }
+    });
+  </script>
+</body>

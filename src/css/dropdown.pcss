@@ -1,0 +1,60 @@
+.popup-group,
+[popup-group],
+.dropdown-group {
+  overflow: visible;
+  position: relative;
+  display: inline-block;
+}
+.dropdown {
+  left: 0;
+  z-index: 200;
+  display: block;
+  //padding: 3px 0;
+  max-width: 500px;
+  position: absolute;
+  visibility: hidden;
+  border: 1px solid $border-light;
+  background-color: #fff;
+  opacity: 0;
+  @mixin shadow;
+  @mixin transition-opacity;
+}
+.dropdown:not(.top) {
+  top: 100%;
+  margin-top: 3px;
+}
+.dropdown.top {
+  bottom: 100%;
+  margin-bottom: 3px;
+}
+.input-group > .dropdown,
+.dropdown-group > .dropdown {
+  min-width: 100%;
+}
+.dropdown.right {
+  left: auto;
+  right: 0;
+}
+.dropdown.active {
+  opacity: 1;
+  visibility: visible;
+}
+.dropdown .list-group-item {
+  border: 0 !important;
+  color: $text-grey;
+  padding: 4px 10px;
+}
+.dropdown .divider {
+  padding: 5px 10px;
+  color: $text-light-grey;
+  background-color: transparent;
+}
+.divider.line {
+  padding: 0;
+  height: 1px;
+  margin: 4px 0;
+  background-color: $transparent-dark;
+}
+.dropdown .divider:not(.line) ~ .list-group-item {
+  padding-left: 20px;
+}
