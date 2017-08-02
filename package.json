@@ -1,6 +1,6 @@
 {
   "name": "sparrow-ui",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "tiny ui stuff, suitable for building desktop & mobile pages",
   "main": "dist/sparrow.js",
   "scripts": {
