@@ -15,11 +15,15 @@ const MODAL_ACTION_ATTR = 'modal-action';
 const MODAL_TARGET_ATTR = 'modal-target';
 
 function findAction(el) {
-  return el.getAttribute(POP_ACTION_ATTR) || el.getAttribute(DD_ACTION_ATTR) || el.getAttribute(MODAL_ACTION_ATTR);
+  let act;
+  if (el.getAttribute) act = el.getAttribute(POP_ACTION_ATTR) || el.getAttribute(DD_ACTION_ATTR) || el.getAttribute(MODAL_ACTION_ATTR);
+  return act;
 }
 
 function findTarget(el) {
-  return el.getAttribute(POP_TARGET_ATTR) || el.getAttribute(DD_TARGET_ATTR) || el.getAttribute(MODAL_TARGET_ATTR);
+  let tar;
+  if (el.getAttribute) tar = el.getAttribute(POP_TARGET_ATTR) || el.getAttribute(DD_TARGET_ATTR) || el.getAttribute(MODAL_TARGET_ATTR);
+  return tar;
 }
 
 function findPopupElement(parent) {
