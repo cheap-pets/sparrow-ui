@@ -64,6 +64,9 @@ document.addEventListener(clickEvent, function(event) {
     let count = 0;
     while (count++ < 5 && seek && seek !== document.body) {
       action || (action = findAction(seek));
+      if (action === 'none') {
+        return;
+      }
       target || (action && (target = findTarget(srcElement)));
       if (isMaskElement(seek)) {
         popupElement = seek;
