@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+
+  <script type="text/javascript" src="../vue/vue.js"></script>
+  <script type="text/javascript" src="../vue/vuex.js"></script>
+  <script type="text/javascript" src="../../dist/sparrow.js"></script>
+  <title>multipart scroll</title>
+  <style>
+    .roll-header,
+    .roll-footer {
+      position: absolute;
+      z-index: 10;
+      left: 0;
+      right: 0;
+      height: 44px;
+      line-height: 44px;
+      text-align: center;
+    }
+
+    .roll-header {
+      top: -44px;
+    }
+
+    .roll-footer {
+      bottom: -44px;
+    }
+
+    .roll-header:before,
+    .roll-footer:before {
+      font-size: 20px;
+      display: inline-block;
+      color: rgba(0, 0, 0, 0.5);
+      font-family: 'sparrow-icon';
+    }
+
+    .roll-header:before {
+      content: "\e278";
+    }
+
+    .roll-footer:before {
+      content: "\e210";
+    }
+
+    .roll-header.active,
+    .roll-footer.active {
+      background-color: rgba(0, 0, 0, .15);
+    }
+
+    .roll-header.active:before,
+    .roll-footer.active:before {
+      color: white;
+      animation: rotate 1.5s 0s linear infinite;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="bar header fit">
+        <input type="text" id="echo" readonly>
+        <a class="btn btn-link input-icon" modal-action="open" modal-target="#mask-left">
+          <span class="icon icon-menu"></span>
+        </a>
+    </div>
+    <div class="content" @rollstart="rollStart" @rollmove="rollMove" @rollend="rollEnd" @rollheaderactivate="headeractivate"
+      @rollfooteractivate="footeractivate" v-roll="{'scrollbar': true}">
+      <div class="roll-header"></div>
+      <div class="roll-body">
+        <div class="list-group">
+          <a class="list-group-item" v-for="v in items">
+            <div class="form-group fit">
+              <label>名称</label><input type="text">
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="roll-footer"></div>
+    </div>
+    <div class="modal-mask" id="mask-left">
+      <div class="float-panel float-left" v-roll="{'scrollbar': true}" style="min-width: 200px;">
+        <div class="list-group">
+          <a class="list-group-item" v-for="v in items" @tap="myTap($event, v)">选项 {{v}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var arr = [];
+    for (var i = 0; i < 50; i++) {
+      arr.push(i);
+    }
+    var app = new Vue({
+      el: '.page',
+      data: {
+        items: arr
+      },
+      methods: {
+        rollStart: function (e) {
+          document.querySelector('#echo').value = 'start: ' + +e.detail.y + ' dir: ' + e.detail.direction;
+        },
+        rollMove: function (e) {
+          document.querySelector('#echo').value = 'move: ' + e.detail.y + ' dir: ' + e.detail.direction;
+        },
+        rollEnd: function (e) {
+          document.querySelector('#echo').value = 'end: ' + e.detail.y + ' dir: ' + e.detail.direction;
+        },
+        headeractivate: function (e) {
+          document.querySelector('#echo').value = 'header activate';
+        },
+        footeractivate: function (e) {
+          document.querySelector('#echo').value = 'footer activate';
+        },
+        myTap: function (e, v) {
+          document.querySelector('#echo').value = v;
+        }
+      }
+    });
+  </script>
+</body>

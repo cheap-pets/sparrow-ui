@@ -67,7 +67,7 @@ document.addEventListener(clickEvent, function(event) {
       if (action === 'none') {
         return;
       }
-      target || (action && (target = findTarget(srcElement)));
+      target || (action && (target = findTarget(seek)));
       if (isMaskElement(seek)) {
         popupElement = seek;
         break;

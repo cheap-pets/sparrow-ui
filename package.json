@@ -1,10 +1,11 @@
 {
   "name": "sparrow-ui",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "tiny ui stuff, suitable for building desktop & mobile pages",
   "main": "dist/sparrow.js",
   "scripts": {
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "start": "node examples-server.js"
   },
   "author": "scrollbar.ww",
   "files": [
@@ -25,6 +26,9 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "fs-extra": "^3.0.1",
+    "koa": "^2.3.0",
+    "koa-send": "^4.1.0",
+    "koa-static": "^4.0.1",
     "node-sass": "^4.5.3",
     "normalize.css": "^7.0.0",
     "postcss": "^6.0.8",

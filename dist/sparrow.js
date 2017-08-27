@@ -522,7 +522,6 @@ function attachRoll(wEl, option) {
       transY = transY > 0 ? 0 : minY;
       setTransitionDuration(el, 0.3);
       doMove(transY, true);
-      if (sbEl) { sbEl.style.display = 'none'; }
       dispatchEvent$$1('rollend', e);
     }
 
@@ -544,6 +543,7 @@ function attachRoll(wEl, option) {
         itlTimer = requestAnimationFrame(inertialMove);
       } else {
         isOut ? dockIn() : dispatchEvent$$1('rollend', e);
+        if (sbEl) { sbEl.style.display = 'none'; }
       }
     }
 
@@ -685,7 +685,7 @@ document.addEventListener(clickEvent, function(event) {
       if (action === 'none') {
         return;
       }
-      target || (action && (target = findTarget(srcElement)));
+      target || (action && (target = findTarget(seek)));
       if (isMaskElement(seek)) {
         popupElement = seek;
         break;

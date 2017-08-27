@@ -192,7 +192,6 @@ export default function attachRoll(wEl, option) {
       transY = transY > 0 ? 0 : minY;
       setTransitionDuration(el, 0.3);
       doMove(transY, true);
-      if (sbEl) sbEl.style.display = 'none';
       dispatchEvent('rollend', e);
     }
 
@@ -214,6 +213,7 @@ export default function attachRoll(wEl, option) {
         itlTimer = requestAnimationFrame(inertialMove);
       } else {
         isOut ? dockIn() : dispatchEvent('rollend', e);
+        if (sbEl) sbEl.style.display = 'none';
       }
     }
 
