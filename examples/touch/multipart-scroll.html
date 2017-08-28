@@ -83,9 +83,9 @@
       <div class="roll-header"></div>
       <div class="roll-body">
         <div class="list-group">
-          <a class="list-group-item" v-for="v in items">
+          <a class="list-group-item" v-for="(v,idx) in items">
             <div class="form-group fit">
-              <label>名称</label><input type="text">
+              <label>名称{{idx}}</label><input type="text">
             </div>
           </a>
         </div>

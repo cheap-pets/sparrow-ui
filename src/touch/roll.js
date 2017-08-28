@@ -140,14 +140,18 @@ export default function attachRoll(wEl, option) {
 
   window.addEventListener('resize', refreshSize);
 
+  let startInput;
   el.addEventListener('touchstart', function(e) {
     stage = 0;
+    startInput = isInput(e.target) ? e.target : undefined;
+    /*
     let iptEl = getActiveInput();
     if (iptEl && iptEl !== e.target) {
       isInput(e.target) ? e.target.focus() : iptEl.blur();
       e.preventDefault();
       return;
     }
+    */
     clearTimeout(spdTimer);
     cancelAnimationFrame(itlTimer);
     stage = 1;
@@ -205,7 +209,7 @@ export default function attachRoll(wEl, option) {
       return transY > 0 || transY < minY;
     };
 
-    function inertialMove() {
+    function inertialMove () {
       let tsNow = +new Date();
       let deltaY = speed * (tsNow - ts);
       ts = tsNow;
@@ -233,6 +237,10 @@ export default function attachRoll(wEl, option) {
         else if (speed < -5) speed = -5;
         itlTimer = requestAnimationFrame(inertialMove);
       }
+    } else if (stage === 1 && startInput) {
+      startInput.focus();
+      e.preventDefault();
+      e.stopPropagation();
     }
     stage = 0;
   });

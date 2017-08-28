@@ -470,14 +470,18 @@ function attachRoll(wEl, option) {
 
   window.addEventListener('resize', refreshSize);
 
+  var startInput;
   el.addEventListener('touchstart', function(e) {
     stage = 0;
-    var iptEl = getActiveInput();
+    startInput = isInput(e.target) ? e.target : undefined;
+    /*
+    let iptEl = getActiveInput();
     if (iptEl && iptEl !== e.target) {
       isInput(e.target) ? e.target.focus() : iptEl.blur();
       e.preventDefault();
       return;
     }
+    */
     clearTimeout(spdTimer);
     cancelAnimationFrame(itlTimer);
     stage = 1;
@@ -535,7 +539,7 @@ function attachRoll(wEl, option) {
       return transY > 0 || transY < minY;
     }
 
-    function inertialMove() {
+    function inertialMove () {
       var tsNow = +new Date();
       var deltaY = speed * (tsNow - ts);
       ts = tsNow;
@@ -563,6 +567,10 @@ function attachRoll(wEl, option) {
         else if (speed < -5) { speed = -5; }
         itlTimer = requestAnimationFrame(inertialMove);
       }
+    } else if (stage === 1 && startInput) {
+      startInput.focus();
+      e.preventDefault();
+      e.stopPropagation();
     }
     stage = 0;
   });
@@ -630,8 +638,16 @@ if (device.isMobile) {
   });
 }
 
-//put an empty fn to handle A:active effect
-document.addEventListener('touchstart', function () {});
+if (device.isMobile) {
+  //1. put a fn to handle A:active effect
+  //2. make a focuesd input element deactivate, when touch others
+  document.addEventListener('touchstart', function (e) {
+    var activeInput = getActiveInput();
+    if (activeInput && activeInput !== e.target) {
+      activeInput.blur();
+    }
+  });
+}
 
 //点击事件名称
 var clickEvent = device.isMobile ? 'tap' : 'click';
