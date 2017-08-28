@@ -58,7 +58,7 @@ $btn-negative-font-color: $text-white;
   padding: 9px 14px;
 }
 .btn.active,
-.btn:hover,
+html:not(.mobile) .btn:hover,
 .btn:active {
   color: $white;
   border-color: transparent;
@@ -72,10 +72,10 @@ $btn-negative-font-color: $text-white;
   margin-left: 4px;
 }
 .btn.active .caret:after,
-.btn:hover .caret:after,
+html:not(.mobile) .btn:hover .caret:after,
 .btn:active .caret:after,
 .btn.caret.active:after,
-.btn.caret:hover:after,
+html:not(.mobile) .btn.caret:hover:after,
 .btn.caret:active:after
 {
   border-top-color: $white;
@@ -103,7 +103,7 @@ $btn-negative-font-color: $text-white;
   border: 1px solid $btn-primary-active-color;
 }
 .btn-primary.active,
-.btn-primary:hover,
+html:not(.mobile) .btn-primary:hover,
 .btn-primary:active {
   background-color: $btn-primary-hover-color;
   color: $btn-primary-font-color;
@@ -133,7 +133,7 @@ $btn-negative-font-color: $text-white;
   border-color: $btn-submit-active-color;
 }
 .btn-submit.active,
-.btn-submit:hover,
+html:not(.mobile) .btn-submit:hover,
 .btn-submit:active {
   background-color: $btn-submit-hover-color;
   color: $btn-submit-font-color;
@@ -162,7 +162,7 @@ $btn-negative-font-color: $text-white;
   border-color: $btn-negative-active-color;
 }
 .btn-negative.active,
-.btn-negative:hover,
+html:not(.mobile) .btn-negative:hover,
 .btn-negative:active {
   background-color: $btn-negative-hover-color;
   color: $btn-negative-font-color;

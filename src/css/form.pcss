@@ -25,6 +25,7 @@ input[type="color"] {
   border-radius: 0;
   color: $text-black;
   @mixin transition-background;
+  user-select: auto;
 }
 select:focus,
 textarea:focus,
@@ -149,7 +150,7 @@ label.top {
 }
 a.input-icon:not(.btn):active,
 a.input-icon.active:not(.btn),
-a.input-icon:hover:not(.btn) {
+html:not(.mobile) a.input-icon:hover:not(.btn) {
   background-color: $transparent-dark;
 }
 a.input-icon:active,
