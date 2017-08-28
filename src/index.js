@@ -1,7 +1,7 @@
-import media from './utils/media-query';
+import device from './utils/device-query';
 import './utils/animation-frame';
 import * as vue from './vue/index';
-export { media };
+export { device };
 export * from './utils/date';
 export * from './touch/index';
 export * from './popup/popup';
