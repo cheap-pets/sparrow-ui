@@ -28,12 +28,12 @@ function orientation() {
 }
 
 export default {
+  isMobile,
+  isIphone,
+  isIpad,
+  isIpod,
+  isAndroidPhone,
+  isWindowsPhone,
   platform: platform,
-  mobile: isMobile,
-  iphone: isIphone,
-  ipad: isIpad,
-  ipod: isIpod,
-  androidPhone: isAndroidPhone,
-  windowsPhone: isWindowsPhone,
   orientation: orientation
 };
