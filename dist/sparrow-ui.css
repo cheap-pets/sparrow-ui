@@ -284,7 +284,11 @@ h6 {
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  -webkit-touch-callout: none
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
 }
 body {
   margin: 0
@@ -695,7 +699,7 @@ a {
 }
 .btn.active,
 .btn:active,
-.btn:hover {
+html:not(.mobile) .btn:hover {
   color: #fff;
   border-color: transparent;
   background-color: #aaa
@@ -709,9 +713,9 @@ a {
 .btn.active .caret:after,
 .btn.caret.active:after,
 .btn.caret:active:after,
-.btn.caret:hover:after,
 .btn:active .caret:after,
-.btn:hover .caret:after {
+html:not(.mobile) .btn.caret:hover:after,
+html:not(.mobile) .btn:hover .caret:after {
   border-top-color: #fff
 }
 .btn:disabled,
@@ -737,7 +741,7 @@ a {
 }
 .btn-primary.active,
 .btn-primary:active,
-.btn-primary:hover {
+html:not(.mobile) .btn-primary:hover {
   background-color: #64b5f6;
   color: #fff
 }
@@ -767,7 +771,7 @@ a {
 }
 .btn-submit.active,
 .btn-submit:active,
-.btn-submit:hover {
+html:not(.mobile) .btn-submit:hover {
   background-color: #81c784;
   color: #fff
 }
@@ -796,7 +800,7 @@ a {
 }
 .btn-negative.active,
 .btn-negative:active,
-.btn-negative:hover {
+html:not(.mobile) .btn-negative:hover {
   background-color: #e57373;
   color: #fff
 }
@@ -913,6 +917,9 @@ a {
 .fit > * {
   display: table-cell
 }
+.fit > * > input {
+  width: 100%
+}
 .page {
   top: 0;
   left: 0;
@@ -981,7 +988,11 @@ textarea {
   -webkit-transition: background .1s ease-in-out,-webkit-box-shadow .1s ease-in-out;
   transition: background .1s ease-in-out,-webkit-box-shadow .1s ease-in-out;
   transition: background .1s ease-in-out,box-shadow .1s ease-in-out;
-  transition: background .1s ease-in-out,box-shadow .1s ease-in-out,-webkit-box-shadow .1s ease-in-out
+  transition: background .1s ease-in-out,box-shadow .1s ease-in-out,-webkit-box-shadow .1s ease-in-out;
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto
 }
 input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=reset]):not([type=file]):focus,
 select:focus,
@@ -1108,8 +1119,8 @@ label.top {
   color: #777
 }
 a.input-icon.active:not(.btn),
-a.input-icon:hover:not(.btn),
-a.input-icon:not(.btn):active {
+a.input-icon:not(.btn):active,
+html:not(.mobile) a.input-icon:hover:not(.btn) {
   background-color: rgba(0,0,0,.15)
 }
 a.input-icon.active,
@@ -1299,7 +1310,7 @@ input.edit-field:focus + .input-icon {
   border: 0
 }
 a.list-group-item:active,
-a.list-group-item:hover {
+html:not(.mobile) a.list-group-item:hover {
   color: #333;
   background-color: rgba(0,0,0,.07)
 }
@@ -1352,7 +1363,7 @@ a.list-group-item:hover {
 }
 .tree-node-item > .hover:hover,
 a.tree-node-item:active,
-a.tree-node-item:hover {
+html:not(.mobile) a.tree-node-item:hover {
   color: #333;
   background-color: rgba(0,0,0,.07)
 }
@@ -1515,7 +1526,7 @@ tree-node-item.active {
   font-size: 28px;
   content: "\e070"
 }
-.dialog-close-btn:hover {
+html:not(.mobile) .dialog-close-btn:hover {
   color: rgba(0,0,0,.7)
 }
 .dialog-body {
@@ -1762,7 +1773,7 @@ tree-node-item.active {
   width: 32px
 }
 .calendar-body a:active,
-.calendar-body a:hover {
+html:not(.mobile) .calendar-body a:hover {
   background-color: rgba(0,0,0,.15)
 }
 .calendar-body a.active {

@@ -1,8 +1,8 @@
-import touchable from '../utils/touchable';
+import device from '../utils/device-query';
 import { modalOpen } from './popup';
 
 //点击事件名称
-const clickEvent = touchable ? 'tap' : 'click';
+const clickEvent = device.isMobile ? 'tap' : 'click';
 
 //消息对话框
 let sysDialog;

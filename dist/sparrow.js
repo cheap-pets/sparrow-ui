@@ -33,14 +33,14 @@ function orientation() {
   return ((window.innerHeight / window.innerWidth) < 1) ? 'landscape' : 'portrait';
 }
 
-var mediaQuery = {
+var device = {
+  isMobile: isMobile,
+  isIphone: isIphone,
+  isIpad: isIpad,
+  isIpod: isIpod,
+  isAndroidPhone: isAndroidPhone,
+  isWindowsPhone: isWindowsPhone,
   platform: platform,
-  mobile: isMobile,
-  iphone: isIphone,
-  ipad: isIpad,
-  ipod: isIpod,
-  androidPhone: isAndroidPhone,
-  windowsPhone: isWindowsPhone,
   orientation: orientation
 };
 
@@ -350,7 +350,7 @@ function attachRoll(wEl, option) {
   if (!el) { el = wEl.children[0]; }
   el.style.webkitTransition = 'transform 0s ease-in';
 
-  function refreshSize() {
+  function recalcSize() {
     wh = wEl.clientHeight;
     h = el.offsetHeight;
     minY = wh - h;
@@ -384,11 +384,11 @@ function attachRoll(wEl, option) {
       }, 1000);
     }
     if (final) {
-      if (hy === hh) {
+      if (hEl && hy === hh) {
         hy0 = hy;
         activate(hEl);
         dispatchEvent$$1('rollheaderactivate');
-      } else if (fy === -fh) {
+      } else if (fEl && fy === -fh) {
         fy0 = fy;
         activate(fEl);
         dispatchEvent$$1('rollfooteractivate');
@@ -446,23 +446,29 @@ function attachRoll(wEl, option) {
     sbEl.style.top = -transY * (wh / h) + 'px';
   }
 
-  window.addEventListener('resize', function(e) {
-    var newY = null;
-    var iptEl = getActiveInput(el);
-    refreshSize();
-    if (iptEl && iptEl.offsetTop + transY + iptEl.offsetHeight > h) {
-      newY = wh - iptEl.offsetTop - iptEl.offsetHeight;
-    } else {
-      if (transY > 0 || transY < minY) {
-        newY = transY > 0 ? 0 : minY;
+  var resizeTimer;
+  function refreshSize () {
+    if (resizeTimer) { clearTimeout(resizeTimer); }
+    resizeTimer = setTimeout(function() {
+      var newY = null;
+      var iptEl = getActiveInput(el);
+      recalcSize();
+      if (iptEl && iptEl.offsetTop + transY + iptEl.offsetHeight > h) {
+        newY = wh - iptEl.offsetTop - iptEl.offsetHeight;
+      } else {
+        if (transY > 0 || transY < minY) {
+          newY = transY > 0 ? 0 : minY;
+        }
       }
-    }
-    if (newY !== null) {
-      setTransitionDuration(el, 0);
-      doMove(newY);
-      transY = newY;
-    }
-  });
+      if (newY !== null) {
+        setTransitionDuration(el, 0);
+        doMove(newY);
+        transY = newY;
+      }
+    }, 300);
+  }
+
+  window.addEventListener('resize', refreshSize);
 
   el.addEventListener('touchstart', function(e) {
     stage = 0;
@@ -489,7 +495,7 @@ function attachRoll(wEl, option) {
         stage = 0;
       } else if (Math.abs(deltaY) > 10) {
         releaseY = transY = getTransformY(this);
-        refreshSize();
+        recalcSize();
         if (dispatchEvent$$1('rollstart', e) === false) { return; }
         stage = 2;
         initScrollbar();
@@ -560,13 +566,20 @@ function attachRoll(wEl, option) {
     }
     stage = 0;
   });
+
+  return {
+    refreshSize: refreshSize
+  };
 }
 
 var vueRoll = {
   install: function (Vue) {
     Vue.directive('roll', {
       bind: function (el, binding) {
-        attachRoll(el, binding.value);
+        el.__roll = attachRoll(el, binding.value);
+      },
+      update: function (el, binding) {
+        el.__roll && el.__roll.refreshSize();
       }
     });
   }
@@ -583,9 +596,7 @@ var index = Object.freeze({
 	CalendarInput: calendarInput
 });
 
-var touchable = ('ontouchend' in document);
-
-if (touchable) {
+if (device.isMobile) {
   var isTap, x, y, ts;
   document.addEventListener('touchstart', function(e) {
     //let tag = e.target.tagName.toLowerCase();
@@ -619,8 +630,11 @@ if (touchable) {
   });
 }
 
+//put an empty fn to handle A:active effect
+document.addEventListener('touchstart', function () {});
+
 //点击事件名称
-var clickEvent = touchable ? 'tap' : 'click';
+var clickEvent = device.isMobile ? 'tap' : 'click';
 
 //用于弹出元素的一些元素、属性名称常量
 var POP_ACTION_ATTR = 'popup-action';
@@ -634,13 +648,17 @@ var MODAL_TARGET_ATTR = 'modal-target';
 
 function findAction(el) {
   var act;
-  if (el.getAttribute) { act = el.getAttribute(POP_ACTION_ATTR) || el.getAttribute(DD_ACTION_ATTR) || el.getAttribute(MODAL_ACTION_ATTR); }
+  if (el.getAttribute) {
+    act = el.getAttribute(POP_ACTION_ATTR) || el.getAttribute(DD_ACTION_ATTR) || el.getAttribute(MODAL_ACTION_ATTR);
+  }
   return act;
 }
 
 function findTarget(el) {
   var tar;
-  if (el.getAttribute) { tar = el.getAttribute(POP_TARGET_ATTR) || el.getAttribute(DD_TARGET_ATTR) || el.getAttribute(MODAL_TARGET_ATTR); }
+  if (el.getAttribute) {
+    tar = el.getAttribute(POP_TARGET_ATTR) || el.getAttribute(DD_TARGET_ATTR) || el.getAttribute(MODAL_TARGET_ATTR);
+  }
   return tar;
 }
 
@@ -677,7 +695,7 @@ document.addEventListener(clickEvent, function(event) {
     var target = action ? findTarget(srcElement) : undefined;
 
     //查找组元素（最多找5层）
-    var seek = (srcElement === document.body) ? srcElement : srcElement.parentNode;
+    var seek = srcElement === document.body ? srcElement : srcElement.parentNode;
     var groupElement;
     var count = 0;
     while (count++ < 5 && seek && seek !== document.body) {
@@ -738,7 +756,7 @@ var modalOpen = showPopup;
 var modalClose = hidePopup;
 
 //点击事件名称
-var clickEvent$1 = touchable ? 'tap' : 'click';
+var clickEvent$1 = device.isMobile ? 'tap' : 'click';
 
 //消息对话框
 var sysDialog;
@@ -844,7 +862,7 @@ function showMessage(message, type) {
   quickMessage(message, type || 'info');
 }
 
-exports.media = mediaQuery;
+exports.device = device;
 exports.vue = index;
 exports.dateOptions = dateOptions;
 exports.isLeapMonth = isLeapMonth;

@@ -1,8 +1,8 @@
-import touchable from '../utils/touchable';
+import device from '../utils/device-query';
 import dispatchEvent from '../utils/dispatch-custom-event';
 
 //点击事件名称
-const clickEvent = touchable ? 'tap' : 'click';
+const clickEvent = device.isMobile ? 'tap' : 'click';
 
 //用于弹出元素的一些元素、属性名称常量
 const POP_ACTION_ATTR = 'popup-action';
@@ -16,13 +16,17 @@ const MODAL_TARGET_ATTR = 'modal-target';
 
 function findAction(el) {
   let act;
-  if (el.getAttribute) act = el.getAttribute(POP_ACTION_ATTR) || el.getAttribute(DD_ACTION_ATTR) || el.getAttribute(MODAL_ACTION_ATTR);
+  if (el.getAttribute) {
+    act = el.getAttribute(POP_ACTION_ATTR) || el.getAttribute(DD_ACTION_ATTR) || el.getAttribute(MODAL_ACTION_ATTR);
+  }
   return act;
 }
 
 function findTarget(el) {
   let tar;
-  if (el.getAttribute) tar = el.getAttribute(POP_TARGET_ATTR) || el.getAttribute(DD_TARGET_ATTR) || el.getAttribute(MODAL_TARGET_ATTR);
+  if (el.getAttribute) {
+    tar = el.getAttribute(POP_TARGET_ATTR) || el.getAttribute(DD_TARGET_ATTR) || el.getAttribute(MODAL_TARGET_ATTR);
+  }
   return tar;
 }
 
@@ -59,7 +63,7 @@ document.addEventListener(clickEvent, function(event) {
     let target = action ? findTarget(srcElement) : undefined;
 
     //查找组元素（最多找5层）
-    let seek = (srcElement === document.body) ? srcElement : srcElement.parentNode;
+    let seek = srcElement === document.body ? srcElement : srcElement.parentNode;
     let groupElement;
     let count = 0;
     while (count++ < 5 && seek && seek !== document.body) {

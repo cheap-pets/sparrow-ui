@@ -4,7 +4,10 @@ const vueRoll = {
   install: function (Vue) {
     Vue.directive('roll', {
       bind: function (el, binding) {
-        attachRoll(el, binding.value);
+        el.__roll = attachRoll(el, binding.value);
+      },
+      update: function (el, binding) {
+        el.__roll && el.__roll.refreshSize();
       }
     });
   }

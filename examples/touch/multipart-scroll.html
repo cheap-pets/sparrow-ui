@@ -71,7 +71,9 @@
 <body>
   <div class="page">
     <div class="bar header fit">
+        <div>
         <input type="text" id="echo" readonly>
+        </div>
         <a class="btn btn-link input-icon" modal-action="open" modal-target="#mask-left">
           <span class="icon icon-menu"></span>
         </a>
@@ -124,6 +126,7 @@
         },
         footeractivate: function (e) {
           document.querySelector('#echo').value = 'footer activate';
+          this.items = this.items.slice(0, 30);
         },
         myTap: function (e, v) {
           document.querySelector('#echo').value = v;

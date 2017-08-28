@@ -1,7 +1,7 @@
-import touchable from '../utils/touchable';
+import device from '../utils/device-query';
 import dispatchEvent from '../utils/dispatch-custom-event';
 
-if (touchable) {
+if (device.isMobile) {
   let isTap, x, y, ts;
   document.addEventListener('touchstart', function(e) {
     //let tag = e.target.tagName.toLowerCase();

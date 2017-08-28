@@ -20,7 +20,7 @@ export default function attachRoll(wEl, option) {
   if (!el) el = wEl.children[0];
   el.style.webkitTransition = 'transform 0s ease-in';
 
-  function refreshSize() {
+  function recalcSize() {
     wh = wEl.clientHeight;
     h = el.offsetHeight;
     minY = wh - h;
@@ -54,11 +54,11 @@ export default function attachRoll(wEl, option) {
       }, 1000);
     }
     if (final) {
-      if (hy === hh) {
+      if (hEl && hy === hh) {
         hy0 = hy;
         activate(hEl);
         dispatchEvent('rollheaderactivate');
-      } else if (fy === -fh) {
+      } else if (fEl && fy === -fh) {
         fy0 = fy;
         activate(fEl);
         dispatchEvent('rollfooteractivate');
@@ -116,23 +116,29 @@ export default function attachRoll(wEl, option) {
     sbEl.style.top = -transY * (wh / h) + 'px';
   }
 
-  window.addEventListener('resize', function(e) {
-    let newY = null;
-    let iptEl = getActiveInput(el);
-    refreshSize();
-    if (iptEl && iptEl.offsetTop + transY + iptEl.offsetHeight > h) {
-      newY = wh - iptEl.offsetTop - iptEl.offsetHeight;
-    } else {
-      if (transY > 0 || transY < minY) {
-        newY = transY > 0 ? 0 : minY;
+  let resizeTimer;
+  function refreshSize () {
+    if (resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      let newY = null;
+      let iptEl = getActiveInput(el);
+      recalcSize();
+      if (iptEl && iptEl.offsetTop + transY + iptEl.offsetHeight > h) {
+        newY = wh - iptEl.offsetTop - iptEl.offsetHeight;
+      } else {
+        if (transY > 0 || transY < minY) {
+          newY = transY > 0 ? 0 : minY;
+        }
       }
-    }
-    if (newY !== null) {
-      setTransitionDuration(el, 0);
-      doMove(newY);
-      transY = newY;
-    }
-  });
+      if (newY !== null) {
+        setTransitionDuration(el, 0);
+        doMove(newY);
+        transY = newY;
+      }
+    }, 300);
+  }
+
+  window.addEventListener('resize', refreshSize);
 
   el.addEventListener('touchstart', function(e) {
     stage = 0;
@@ -159,7 +165,7 @@ export default function attachRoll(wEl, option) {
         stage = 0;
       } else if (Math.abs(deltaY) > 10) {
         releaseY = transY = getTransformY(this);
-        refreshSize();
+        recalcSize();
         if (dispatchEvent('rollstart', e) === false) return;
         stage = 2;
         initScrollbar();
@@ -230,4 +236,8 @@ export default function attachRoll(wEl, option) {
     }
     stage = 0;
   });
-}
+
+  return {
+    refreshSize
+  };
+};
