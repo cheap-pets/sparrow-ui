@@ -272,13 +272,18 @@ var calendarInput = {render: function(){var _vm=this;var _h=_vm.$createElement;v
   }
 };
 
-function dispatchCustomEvent (el, eventName, canBubble, cancelable, detail) {
+function dispatchCustomEvent (el, eventName, canBubble, cancelable, detail, originalEvent) {
   var e = document.createEvent('CustomEvent');
   e.initCustomEvent(eventName, canBubble, cancelable, detail);
-  return el.dispatchEvent(e);
+  e.originalEvent = originalEvent;
+  var ret = el.dispatchEvent(e);
+  if (ret === false && originalEvent) {
+    originalEvent.preventDefault();
+  }
+  return ret;
 }
 
-function addElement (parentNode, tagName, attributes, innerHTML) {
+function addElement(parentNode, tagName, attributes, innerHTML) {
   var el = document.createElement(tagName);
   if (attributes) {
     for (var a in attributes) {
@@ -294,12 +299,12 @@ function addElement (parentNode, tagName, attributes, innerHTML) {
   return el;
 }
 
-function isInput (el) {
+function isInput(el) {
   var tag = el ? el.tagName.toLowerCase() : null;
   return tag === 'input' || tag === 'textarea';
 }
 
-function getActiveInput (parentEl) {
+function getActiveInput(parentEl) {
   var actEl = document.activeElement;
   var isInputActive = isInput(actEl);
   var el;
@@ -450,24 +455,29 @@ function attachRoll(wEl, option) {
   function refreshSize () {
     if (resizeTimer) { clearTimeout(resizeTimer); }
     resizeTimer = setTimeout(function() {
-      var newY = null;
-      var iptEl = getActiveInput(el);
       recalcSize();
+      /*
+      let iptEl = getActiveInput(el);
       if (iptEl && iptEl.offsetTop + transY + iptEl.offsetHeight > h) {
         newY = wh - iptEl.offsetTop - iptEl.offsetHeight;
       } else {
-        if (transY > 0 || transY < minY) {
-          newY = transY > 0 ? 0 : minY;
-        }
       }
-      if (newY !== null) {
+      */
+      var scrollTop = wEl.scrollTop;
+      if (scrollTop) {
+        transY -= scrollTop;
+      }
+      if (scrollTop || transY > 0 || transY < minY) {
+        if (transY > 0) { transY = 0; }
+        else if (transY < minY) { transY = minY; }
         setTransitionDuration(el, 0);
-        doMove(newY);
-        transY = newY;
+        wEl.scrollTop = 0;
+        doMove(transY);
       }
-    }, 300);
+    }, 200);
   }
 
+  wEl.addEventListener('scroll', refreshSize);
   window.addEventListener('resize', refreshSize);
 
   var startInput;
@@ -628,7 +638,7 @@ if (device.isMobile) {
     if (isTap && ms < 500) {
       //let tag = e.target.tagName.toLowerCase();
       //let canBubble = (tag !== 'input' && tag !== 'textarea');
-      dispatchCustomEvent(e.target, 'tap', true, true, e);
+      dispatchCustomEvent(e.target, 'tap', true, true, undefined, e);
     }
     isTap = false;
   });

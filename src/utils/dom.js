@@ -20,8 +20,8 @@ export function isInput (el) {
 }
 
 export function getActiveInput (parentEl) {
-  let actEl = document.activeElement;
-  let isInputActive = isInput(actEl);
+  const actEl = document.activeElement;
+  const isInputActive = isInput(actEl);
   let el;
   if (isInputActive) {
     if (parentEl) {
@@ -36,4 +36,16 @@ export function getActiveInput (parentEl) {
     } else el = actEl;
   }
   return el;
+}
+
+export function getBoundingClientRect (el, parentEl) {
+  const top = document.documentElement.clientTop;
+  const left = document.documentElement.clientLeft;
+  const rect = el.getBoundingClientRect();
+  return {
+    top: rect.top - top,
+    bottom: rect.bottom - top,
+    left: rect.left - left,
+    right: rect.right - left
+  };
 }

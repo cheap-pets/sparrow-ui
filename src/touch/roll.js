@@ -120,24 +120,29 @@ export default function attachRoll(wEl, option) {
   function refreshSize () {
     if (resizeTimer) clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function() {
-      let newY = null;
-      let iptEl = getActiveInput(el);
       recalcSize();
+      /*
+      let iptEl = getActiveInput(el);
       if (iptEl && iptEl.offsetTop + transY + iptEl.offsetHeight > h) {
         newY = wh - iptEl.offsetTop - iptEl.offsetHeight;
       } else {
-        if (transY > 0 || transY < minY) {
-          newY = transY > 0 ? 0 : minY;
-        }
       }
-      if (newY !== null) {
+      */
+      let scrollTop = wEl.scrollTop;
+      if (scrollTop) {
+        transY -= scrollTop;
+      }
+      if (scrollTop || transY > 0 || transY < minY) {
+        if (transY > 0) transY = 0;
+        else if (transY < minY) transY = minY;
         setTransitionDuration(el, 0);
-        doMove(newY);
-        transY = newY;
+        wEl.scrollTop = 0;
+        doMove(transY);
       }
-    }, 300);
+    }, 200);
   }
 
+  wEl.addEventListener('scroll', refreshSize);
   window.addEventListener('resize', refreshSize);
 
   let startInput;

@@ -6,9 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link href="../../dist/sparrow-ui.css" rel="stylesheet">
 
-  <script type="text/javascript" src="../vue/vue.js"></script>
-  <script type="text/javascript" src="../vue/vuex.js"></script>
-  <script type="text/javascript" src="../../dist/sparrow.js"></script>
   <title>multipart scroll</title>
   <style>
     .roll-header,
@@ -65,6 +62,18 @@
         transform: rotate(360deg);
       }
     }
+
+    .list-group-item > .form-group > label {
+      width: 70px;
+    }
+
+    .content {
+      border: 1px solid red;
+    }
+
+    .roll-body {
+      position: relative;
+    }
   </style>
 </head>
 
@@ -72,22 +81,22 @@
   <div class="page">
     <div class="bar header fit">
         <div>
-        <input type="text" id="echo" readonly>
+          <input type="text" id="echo" readonly>
         </div>
         <a class="btn btn-link input-icon" modal-action="open" modal-target="#mask-left">
           <span class="icon icon-menu"></span>
         </a>
     </div>
     <div class="content" @rollstart="rollStart" @rollmove="rollMove" @rollend="rollEnd" @rollheaderactivate="headeractivate"
-      @rollfooteractivate="footeractivate" v-roll="{'scrollbar': true}">
+      @rollfooteractivate="footeractivate" v-roll="{'scrollbar': false}">
       <div class="roll-header"></div>
       <div class="roll-body">
         <div class="list-group">
-          <a class="list-group-item" v-for="(v,idx) in items">
+          <div class="list-group-item" v-for="(v,idx) in items">
             <div class="form-group fit">
               <label>名称{{idx}}</label><input type="text">
             </div>
-          </a>
+          </div>
         </div>
       </div>
       <div class="roll-footer"></div>
@@ -100,7 +109,9 @@
       </div>
     </div>
   </div>
-
+  <script type="text/javascript" src="../vue/vue.js"></script>
+  <script type="text/javascript" src="../vue/vuex.js"></script>
+  <script type="text/javascript" src="../../dist/sparrow.js"></script>
   <script type="text/javascript">
     var arr = [];
     for (var i = 0; i < 50; i++) {
@@ -120,6 +131,7 @@
         },
         rollEnd: function (e) {
           document.querySelector('#echo').value = 'end: ' + e.detail.y + ' dir: ' + e.detail.direction;
+          
         },
         headeractivate: function (e) {
           document.querySelector('#echo').value = 'header activate';
