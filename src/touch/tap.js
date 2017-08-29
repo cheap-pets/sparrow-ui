@@ -25,7 +25,7 @@ if (device.isMobile) {
     if (isTap && ms < 500) {
       //let tag = e.target.tagName.toLowerCase();
       //let canBubble = (tag !== 'input' && tag !== 'textarea');
-      dispatchEvent(e.target, 'tap', true, true, e);
+      dispatchEvent(e.target, 'tap', true, true, undefined, e);
     }
     isTap = false;
   });
