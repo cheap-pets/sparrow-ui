@@ -283,7 +283,7 @@ function dispatchCustomEvent (el, eventName, canBubble, cancelable, detail, orig
   return ret;
 }
 
-function addElement(parentNode, tagName, attributes, innerHTML) {
+function addElement (parentNode, tagName, attributes, innerHTML) {
   var el = document.createElement(tagName);
   if (attributes) {
     for (var a in attributes) {
@@ -299,12 +299,12 @@ function addElement(parentNode, tagName, attributes, innerHTML) {
   return el;
 }
 
-function isInput(el) {
+function isInput (el) {
   var tag = el ? el.tagName.toLowerCase() : null;
   return tag === 'input' || tag === 'textarea';
 }
 
-function getActiveInput(parentEl) {
+function getActiveInput (parentEl) {
   var actEl = document.activeElement;
   var isInputActive = isInput(actEl);
   var el;
@@ -339,7 +339,7 @@ function setTransformY (el, y) {
 }
 
 function attachRoll(wEl, option) {
-  var stage, x, y, minY, transY, releaseY;
+  var stage, x, y, minY, releaseY;
   var el, hEl, fEl, sbEl, wh, h, hh, fh, hy, fy;
   var ts, speed, direction;
   var moveTimer, spdTimer, itlTimer;
@@ -353,7 +353,9 @@ function attachRoll(wEl, option) {
     else if (n.classList.contains('roll-footer')) { fEl = n; }
   }
   if (!el) { el = wEl.children[0]; }
+  if (!el) { return; }
   el.style.webkitTransition = 'transform 0s ease-in';
+  var transY = getTransformY(el);
 
   function recalcSize() {
     wh = wEl.clientHeight;

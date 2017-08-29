@@ -1,10 +1,10 @@
 import '../utils/animation-frame';
 import dispatchCustomEvent from '../utils/dispatch-custom-event';
-import { addElement, isInput, getActiveInput } from '../utils/dom';
+import { addElement, isInput } from '../utils/dom'; //getActiveInput
 import { setTransitionDuration, getTransformY, setTransformY } from '../utils/transform';
 
 export default function attachRoll(wEl, option) {
-  let stage, x, y, minY, transY, releaseY;
+  let stage, x, y, minY, releaseY;
   let el, hEl, fEl, sbEl, wh, h, hh, fh, hy, fy;
   let ts, speed, direction;
   let moveTimer, spdTimer, itlTimer;
@@ -18,7 +18,9 @@ export default function attachRoll(wEl, option) {
     else if (n.classList.contains('roll-footer')) fEl = n;
   }
   if (!el) el = wEl.children[0];
+  if (!el) return;
   el.style.webkitTransition = 'transform 0s ease-in';
+  let transY = getTransformY(el);
 
   function recalcSize() {
     wh = wEl.clientHeight;
