@@ -1,0 +1,25 @@
+{
+  "sourceRoot": "src", // source root path
+  "outputRoot": "dist", // output root path
+  "bundle": {
+    "format": "umd", // Immediately-Invoked Function Expression
+    "version": false,
+    "uglify": false, // uglify script bundle
+    "sourcemap": false // output sourcemap files
+  },
+  "modules": [
+    {
+      "name": "sparrow", // module name
+      "source": {
+        "script": "index.js",
+        "css": "css/index.pcss",
+        "fonts": "css/fonts"
+      },
+      "output": {
+        "script": "sparrow.js",
+        "css": "sparrow-ui.css",
+        "fonts": "fonts"
+      }
+    }
+  ]
+}

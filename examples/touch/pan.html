@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+
+  <script type="text/javascript" src="../vue/vue.js"></script>
+  <script type="text/javascript" src="../vue/vuex.js"></script>
+  <script type="text/javascript" src="../../dist/sparrow.js"></script>
+  <title>pan</title>
+  <style>
+    #app {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      bottom: 20px;
+      right: 20px;
+      background-color: brown;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" v-pan v-press @press="press" @panstart="panstart" @panmove="panmove" @panend="panend">
+    <div>press: {{pressMessage}} </div>
+    <div>start: {{startMessage}}</div>
+    <div>move: {{moveMessage}}</div>
+    <div>end: {{endMessage}}</div>
+  </div>
+
+  <script type="text/javascript">
+    document.addEventListener('touchstart', function(event) {
+      event.preventDefault();
+    });
+    var app = new Vue({
+      el: '#app',
+      data: {
+        pressMessage: '',
+        startMessage: '',
+        moveMessage: '',
+        endMessage: ''
+      },
+      methods: {
+        press: function (e) {
+          this.pressMessage = 'totalTime(' + e.detail.totalTime + ')';
+        },
+        panstart: function (e) {
+          this.startMessage = 'pos(' + e.detail.x + ', ' + e.detail.y + ')';
+        },
+        panmove: function (e) {
+          this.moveMessage = 'pos(' + e.detail.x + ', ' + e.detail.y + ') speed(' + e.detail.speedX.toFixed(4) + ',' + e.detail.speedY.toFixed(4) + ')';
+        },
+        panend: function (e) {
+          this.endMessage = 'pos(' + e.detail.x + ', ' + e.detail.y + ')';
+        }
+      }
+    });
+  </script>
+</body>

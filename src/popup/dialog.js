@@ -97,13 +97,13 @@ if (document.body) {
 
 export function alert(message, callback) {
   showDialog('alert', message, callback);
-};
+}
 export function confirm(message, callback) {
   showDialog('confirm', message, callback);
-};
+}
 export function warn(message, callback) {
   showDialog('warn', message, callback);
-};
+}
 export function showMessage(message, type) {
   quickMessage(message, type || 'info');
-};
+}

@@ -2,7 +2,7 @@ let userAgent = window.navigator.userAgent.toLowerCase();
 
 function hasFlag(flag) {
   return userAgent.indexOf(flag) !== -1;
-};
+}
 
 const isWindows = hasFlag('windows');
 const isWindowsPhone = isWindows && hasFlag('phone');

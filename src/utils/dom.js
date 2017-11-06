@@ -38,9 +38,17 @@ export function getActiveInput (parentEl) {
   return el;
 }
 
-export function getBoundingClientRect (el, parentEl) {
-  const top = document.documentElement.clientTop;
-  const left = document.documentElement.clientLeft;
+export function getBoundingClientRect (el, pEl) {
+  let top;
+  let left;
+  if (pEl) {
+    const pRect = pEl.getBoundingClientRect();
+    top = pRect.top;
+    left = pRect.left;
+  } else {
+    top = document.documentElement.clientTop;
+    left = document.documentElement.clientLeft;
+  }
   const rect = el.getBoundingClientRect();
   return {
     top: rect.top - top,

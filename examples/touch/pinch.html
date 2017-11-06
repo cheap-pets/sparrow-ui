@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="../../dist/sparrow-ui.css" rel="stylesheet">
+
+  <script type="text/javascript" src="../vue/vue.js"></script>
+  <script type="text/javascript" src="../vue/vuex.js"></script>
+  <script type="text/javascript" src="../../dist/sparrow.js"></script>
+  <title>pinch</title>
+  <style>
+    #app {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      bottom: 20px;
+      right: 20px;
+      background-color: brown;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" v-pinch @pinchstart="pinchstart" @pinchmove="pinchmove" @pinchend="pinchend">
+    <div>start: {{startMessage}}</div>
+    <div>move: {{moveMessage}}</div>
+    <div>end: {{endMessage}}</div>
+  </div>
+
+  <script type="text/javascript">
+    document.addEventListener('touchstart', function(event) {
+      event.preventDefault();
+    });
+    var app = new Vue({
+      el: '#app',
+      data: {
+        startMessage: '',
+        moveMessage: '',
+        endMessage: ''
+      },
+      methods: {
+        pinchstart: function (e) {
+          this.startMessage = 'center(' + e.detail.centerX + ', ' + e.detail.centerY + ')';
+        },
+        pinchmove: function (e) {
+          this.moveMessage = 'center(' + e.detail.centerX + ', ' + e.detail.centerY + ') ratio(' + e.detail.pinchRatio.toFixed(4) + ')';
+        },
+        pinchend: function (e) {
+          this.endMessage = 'center(' + e.detail.centerX + ', ' + e.detail.centerY + ')';
+        }
+      }
+    });
+  </script>
+</body>

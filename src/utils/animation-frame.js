@@ -10,13 +10,13 @@ window.cancelAnimationFrame =
   window.webkitCancelRequestAnimationFrame;
 
 if (!window.requestAnimationFrame) {
-  window.requestAnimationFrame = function(fn) {
+  window.requestAnimationFrame = function (fn) {
     return window.setTimeout(fn, 100 / 6);
   };
 }
 
 if (!window.cancelAnimationFrame) {
-  window.cancelAnimationFrame = function(h) {
+  window.cancelAnimationFrame = function (h) {
     clearTimeout(h);
   };
 }

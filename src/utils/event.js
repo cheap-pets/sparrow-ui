@@ -1,4 +1,4 @@
-export default function dispatchCustomEvent (el, eventName, canBubble, cancelable, detail, originalEvent) {
+export function dispatchCustomEvent (el, eventName, canBubble, cancelable, detail, originalEvent) {
   let e = document.createEvent('CustomEvent');
   e.initCustomEvent(eventName, canBubble, cancelable, detail);
   e.originalEvent = originalEvent;
@@ -7,4 +7,4 @@ export default function dispatchCustomEvent (el, eventName, canBubble, cancelabl
     originalEvent.preventDefault();
   }
   return ret;
-};
+}

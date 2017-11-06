@@ -1,5 +1,5 @@
 import device from '../utils/device-query';
-import dispatchEvent from '../utils/dispatch-custom-event';
+import { dispatchCustomEvent } from '../utils/event';
 
 //点击事件名称
 const clickEvent = device.isMobile ? 'tap' : 'click';
@@ -112,12 +112,12 @@ document.addEventListener(clickEvent, function(event) {
 function showPopup(el, arg) {
   el = typeof el === 'string' ? document.querySelector(el) : el;
   el.classList.add('active');
-  dispatchEvent(el, 'show', false, false, arg);
+  dispatchCustomEvent(el, 'show', false, false, arg);
 }
 function hidePopup(el, arg) {
   el = typeof el === 'string' ? document.querySelector(el) : el;
   el.classList.remove('active');
-  dispatchEvent(el, 'hide', false, false, arg);
+  dispatchCustomEvent(el, 'hide', false, false, arg);
 }
 //兼容老的方法名
 let modalOpen = showPopup;

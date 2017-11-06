@@ -80,7 +80,6 @@ export default {
     let today = new Date();
     let plainToday = convertPlainDate(today);
     let plainDate = convertPlainDate(today);
-    plainDate.date = 20;
     return {
       view: 'days',
       plainToday,

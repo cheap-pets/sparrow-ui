@@ -347,29 +347,21 @@ a {
   vertical-align: middle
 }
 .caret:after {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-color: transparent;
-  border-width: 4px 4px 0;
-  border-top-color: #777
+  triangle: pointing-down;
+  width: 8px;
+  height: 4px;
+  background-color: #777
 }
 .expand-toggle:after {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-color: transparent;
-  border-width: 4.6188px 0 4.6188px 8px;
+  triangle: equilateral pointing-right;
+  width: 8px;
   cursor: pointer;
-  border-left-color: #777
+  background-color: #777
 }
 .expand-toggle.expanded:after {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-color: transparent;
-  border-width: 6.9282px 4px 0;
-  border-top-color: #777
+  triangle: equilateral pointing-down;
+  width: 8px;
+  background-color: #777
 }
 .shadow {
   -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.3),0 0 6px 1px rgba(0,0,0,.05);
@@ -1004,6 +996,9 @@ input::-webkit-input-placeholder {
   color: #aaa
 }
 input:-ms-input-placeholder {
+  color: #aaa
+}
+input::-ms-input-placeholder {
   color: #aaa
 }
 input::placeholder {
