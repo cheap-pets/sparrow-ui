@@ -27,7 +27,7 @@
     "fs-extra": "^3.0.1",
     "henhouse": "^1.0.3",
     "normalize.css": "^7.0.0",
-    "sparrow-packer": "^0.1.1"
+    "sparrow-packer": "^0.1.2"
   },
   "dependencies": {}
 }

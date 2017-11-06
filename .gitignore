@@ -60,3 +60,6 @@ package-lock.json
 
 # Mac OS file
 .DS_Store
+
+#VS Code file
+.vscode

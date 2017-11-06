@@ -294,7 +294,8 @@ body {
   margin: 0
 }
 a {
-  cursor: default
+  cursor: default;
+  text-decoration: none
 }
 .hidden {
   visibility: hidden
@@ -347,21 +348,29 @@ a {
   vertical-align: middle
 }
 .caret:after {
-  triangle: pointing-down;
-  width: 8px;
-  height: 4px;
-  background-color: #777
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 4px 4px 0;
+  border-top-color: #777
 }
 .expand-toggle:after {
-  triangle: equilateral pointing-right;
-  width: 8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 4.6188px 0 4.6188px 8px;
   cursor: pointer;
-  background-color: #777
+  border-left-color: #777
 }
 .expand-toggle.expanded:after {
-  triangle: equilateral pointing-down;
-  width: 8px;
-  background-color: #777
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 6.9282px 4px 0;
+  border-top-color: #777
 }
 .shadow {
   -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.3),0 0 6px 1px rgba(0,0,0,.05);
@@ -650,17 +659,24 @@ a {
 }
 .btn {
   display: inline-block;
-  color: #333;
+  color: #fff;
   outline: 0;
   line-height: 20px;
-  border-radius: 3px;
+  border-radius: 2px;
   text-align: center;
-  background-color: rgba(0,0,0,.15);
+  background-color: grey;
   font-size: 14px;
-  padding: 7px 10px;
-  border: 0;
-  cursor: default;
-  text-decoration: none
+  padding: 8px 20px;
+  border: 0 solid grey;
+  cursor: pointer
+}
+.btn-outline {
+  padding: 7px 19px;
+  border-width: 1px
+}
+.btn-link,
+.btn-outline {
+  color: #666
 }
 .btn.block {
   display: block
@@ -669,76 +685,58 @@ a {
   background-color: #fff;
   color: #333
 }
-.btn-outline {
-  padding: 6px 9px;
-  border: 1px solid #999
-}
 .btn-group.small .btn,
 .btn.small {
   font-size: 12px;
-  padding: 4px 5px
+  padding: 3px 10px
 }
 .btn-group.small .btn-outline,
 .btn-outline.small {
-  padding: 3px 4px
+  padding: 2px 9px
 }
 .btn.large {
-  font-size: 18px;
-  padding: 10px 15px
+  font-size: 16px;
+  padding: 10px 25px
 }
 .btn-outline.large {
-  padding: 9px 14px
+  padding: 9px 24px
 }
 .btn.active,
 .btn:active,
-html:not(.mobile) .btn:hover {
+.btn:hover {
   color: #fff;
   border-color: transparent;
-  background-color: #aaa
+  background-color: #666
 }
 .btn.active {
-  background-color: #777
-}
-.btn .caret {
-  margin-left: 4px
-}
-.btn.active .caret:after,
-.btn.caret.active:after,
-.btn.caret:active:after,
-.btn:active .caret:after,
-html:not(.mobile) .btn.caret:hover:after,
-html:not(.mobile) .btn:hover .caret:after {
-  border-top-color: #fff
+  background-color: #666
 }
 .btn:disabled,
 .btn[disabled] {
-  border-color: transparent;
-  background-color: #aaa
+  border-width: 0;
+  background-color: #a9a9a9;
+  cursor: pointer
 }
 .btn-primary {
   background-color: #2196f3;
   border-color: transparent;
   color: #fff
 }
-.btn-primary .caret:not(.btn-outline):not(.btn-link):after,
-.btn-primary.caret:not(.btn-outline):not(.btn-link):after {
-  border-top-color: #fff
-}
 .btn-primary.btn-link,
 .btn-primary.btn-outline {
   color: #2196f3
 }
 .btn-primary.btn-outline {
-  border: 1px solid #1565c0
+  border: 1px solid #1976d2
 }
 .btn-primary.active,
 .btn-primary:active,
-html:not(.mobile) .btn-primary:hover {
-  background-color: #64b5f6;
+.btn-primary:hover {
+  background-color: #1976d2;
   color: #fff
 }
 .btn-primary.active {
-  background-color: #1565c0;
+  background-color: #1976d2;
   color: #fff
 }
 .btn-primary:disabled,
@@ -750,25 +748,21 @@ html:not(.mobile) .btn-primary:hover {
   border-color: transparent;
   color: #fff
 }
-.btn-submit.caret:not(.btn-outline):not(.btn-link):after,
-.btn-submit:not(.btn-outline):not(.btn-link) .caret:after {
-  border-top-color: #fff
-}
 .btn-submit.btn-link,
 .btn-submit.btn-outline {
   color: #4caf50
 }
 .btn-submit.btn-outline {
-  border-color: #2e7d32
+  border-color: #388e3c
 }
 .btn-submit.active,
 .btn-submit:active,
-html:not(.mobile) .btn-submit:hover {
-  background-color: #81c784;
+.btn-submit:hover {
+  background-color: #388e3c;
   color: #fff
 }
 .btn-submit.active {
-  background-color: #2e7d32
+  background-color: #388e3c
 }
 .btn-submit:disabled,
 .btn-submit[disabled] {
@@ -779,25 +773,21 @@ html:not(.mobile) .btn-submit:hover {
   border-color: transparent;
   color: #fff
 }
-.btn-negative.caret:not(.btn-outline):not(.btn-link):after,
-.btn-negative:not(.btn-outline):not(.btn-link) .caret:after {
-  border-top-color: #fff
-}
 .btn-negative.btn-link,
 .btn-negative.btn-outline {
   color: #f44336
 }
 .btn-negative.btn-outline {
-  border-color: #c62828
+  border-color: #d32f2f
 }
 .btn-negative.active,
 .btn-negative:active,
-html:not(.mobile) .btn-negative:hover {
-  background-color: #e57373;
+.btn-negative:hover {
+  background-color: #d32f2f;
   color: #fff
 }
 .btn-negative.active {
-  background-color: #c62828
+  background-color: #d32f2f
 }
 .btn-negative:disabled,
 .btn-negative[disabled] {
@@ -809,7 +799,7 @@ html:not(.mobile) .btn-negative:hover {
 }
 .btn:disabled,
 .btn[disabled] {
-  color: #eee
+  color: rgba(255,255,255,.75)
 }
 .btn-outline {
   background-color: #fff
@@ -1651,7 +1641,7 @@ html:not(.mobile) .dialog-close-btn:hover {
   overflow-y: visible;
   position: relative;
   background-color: rgba(240,240,240,1);
-  padding: 5px
+  padding: 4px 5px
 }
 .bar.footer,
 .bar.header {
@@ -1670,7 +1660,7 @@ html:not(.mobile) .dialog-close-btn:hover {
   margin-left: 5px
 }
 .bar .btn-group.small {
-  margin-top: 3px
+  margin-top: 5px
 }
 .bar .btn-group > .btn,
 .bar .input-group > input {
@@ -1691,7 +1681,7 @@ html:not(.mobile) .dialog-close-btn:hover {
   width: 100%
 }
 .bar-menu {
-  height: 34px;
+  height: 36px;
   padding: 0 5px
 }
 .bar-tab {

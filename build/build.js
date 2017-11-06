@@ -1,3 +1,3 @@
-const { pack } = require('sparrow-packer');
+const { packAndWatch } = require('sparrow-packer');
 
-pack(__dirname, true);
+packAndWatch(__dirname, true);

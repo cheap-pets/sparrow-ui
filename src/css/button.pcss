@@ -1,34 +1,47 @@
-$btn-primary-color: $blue500;
-$btn-primary-hover-color: $blue300;
-$btn-primary-active-color: $blue800;
-$btn-primary-disable-color: $blue200;
-$btn-primary-font-color: $text-white;
+$btn-default-color: $grey3;
+$btn-default-hover-color: $grey2;
+$btn-default-active-color: $grey2;
+$btn-default-disable-color: $grey4;
+$btn-default-font-color: $white;
 
-$btn-submit-color: $green500;
-$btn-submit-hover-color: $green300;
-$btn-submit-active-color: $green800;
-$btn-submit-disable-color: $green200;
-$btn-submit-font-color: $text-white;
+$btn-primary-color: $blue2;
+$btn-primary-hover-color: $blue1;
+$btn-primary-active-color: $blue1;
+$btn-primary-disable-color: $blue3;
+$btn-primary-font-color: $white;
 
-$btn-negative-color: $red500;
-$btn-negative-hover-color: $red300;
-$btn-negative-active-color: $red800;
-$btn-negative-disable-color: $red200;
-$btn-negative-font-color: $text-white;
+$btn-submit-color: $green2;
+$btn-submit-hover-color: $green1;
+$btn-submit-active-color: $green1;
+$btn-submit-disable-color: $green3;
+$btn-submit-font-color: $white;
+
+$btn-negative-color: $red2;
+$btn-negative-hover-color: $red1;
+$btn-negative-active-color: $red1;
+$btn-negative-disable-color: $red3;
+$btn-negative-font-color: $white;
 
 .btn {
   display: inline-block;
-  color: $text-black;
+  color: $white;
   outline: none;
   line-height: 20px;
-  border-radius: 3px;
+  border-radius: 2px;
   text-align: center;
-  background-color: $transparent-dark;
+  background-color: $btn-default-color;
   font-size: 14px;
-  padding: 7px 10px;
-  border: 0;
-  cursor: default;
-  text-decoration: none;
+  padding: 8px 20px;
+  border: 0 solid $btn-default-color;
+  cursor: pointer;
+}
+.btn-outline {
+  padding: 7px 19px;
+  border-width: 1px;
+}
+.btn-outline,
+.btn-link {
+  color: $btn-default-active-color;
 }
 .btn.block {
   display: block;
@@ -37,63 +50,43 @@ $btn-negative-font-color: $text-white;
   background-color: $white;
   color: $text-black;
 }
-.btn-outline {
-  padding: 6px 9px;
-  border: 1px solid $border-dark;
-}
 .btn.small,
 .btn-group.small .btn {
   font-size: 12px;
-  padding: 4px 5px;
+  padding: 3px 10px;
 }
 .btn-outline.small,
 .btn-group.small .btn-outline {
-  padding: 3px 4px;
+  padding: 2px 9px;
 }
 .btn.large {
-  font-size: 18px;
-  padding: 10px 15px;
+  font-size: 16px;
+  padding: 10px 25px;
 }
 .btn-outline.large {
-  padding: 9px 14px;
+  padding: 9px 24px;
 }
 .btn.active,
-html:not(.mobile) .btn:hover,
+.btn:hover,
 .btn:active {
   color: $white;
   border-color: transparent;
-  background-color: $bg-light-grey;
+  background-color: $btn-default-hover-color;
 }
 .btn.active {
-  background-color: $bg-grey;
-}
-
-.btn .caret {
-  margin-left: 4px;
-}
-.btn.active .caret:after,
-html:not(.mobile) .btn:hover .caret:after,
-.btn:active .caret:after,
-.btn.caret.active:after,
-html:not(.mobile) .btn.caret:hover:after,
-.btn.caret:active:after
-{
-  border-top-color: $white;
+  background-color: $btn-default-active-color;
 }
 .btn:disabled,
 .btn[disabled]
  {
-  border-color: transparent;
-  background-color: $bg-light-grey;
+  border-width: 0;
+  background-color: $btn-default-disable-color;
+  cursor: pointer;
 }
 .btn-primary {
   background-color: $btn-primary-color;
   border-color: transparent;
   color: $btn-primary-font-color;
-}
-.btn-primary .caret:not(.btn-outline):not(.btn-link):after,
-.btn-primary.caret:not(.btn-outline):not(.btn-link):after {
-  border-top-color: $btn-primary-font-color;
 }
 .btn-primary.btn-link,
 .btn-primary.btn-outline {
@@ -103,7 +96,7 @@ html:not(.mobile) .btn.caret:hover:after,
   border: 1px solid $btn-primary-active-color;
 }
 .btn-primary.active,
-html:not(.mobile) .btn-primary:hover,
+.btn-primary:hover,
 .btn-primary:active {
   background-color: $btn-primary-hover-color;
   color: $btn-primary-font-color;
@@ -121,10 +114,6 @@ html:not(.mobile) .btn-primary:hover,
   border-color: transparent;
   color: $btn-submit-font-color;
 }
-.btn-submit:not(.btn-outline):not(.btn-link) .caret:after,
-.btn-submit.caret:not(.btn-outline):not(.btn-link):after {
-  border-top-color: $btn-submit-font-color;
-}
 .btn-submit.btn-link,
 .btn-submit.btn-outline {
   color: $btn-submit-color;
@@ -133,7 +122,7 @@ html:not(.mobile) .btn-primary:hover,
   border-color: $btn-submit-active-color;
 }
 .btn-submit.active,
-html:not(.mobile) .btn-submit:hover,
+.btn-submit:hover,
 .btn-submit:active {
   background-color: $btn-submit-hover-color;
   color: $btn-submit-font-color;
@@ -150,10 +139,6 @@ html:not(.mobile) .btn-submit:hover,
   border-color: transparent;
   color: $btn-negative-font-color;
 }
-.btn-negative:not(.btn-outline):not(.btn-link) .caret:after,
-.btn-negative.caret:not(.btn-outline):not(.btn-link):after {
-  border-top-color: $btn-negative-font-color;
-}
 .btn-negative.btn-link,
 .btn-negative.btn-outline {
   color: $btn-negative-color;
@@ -162,7 +147,7 @@ html:not(.mobile) .btn-submit:hover,
   border-color: $btn-negative-active-color;
 }
 .btn-negative.active,
-html:not(.mobile) .btn-negative:hover,
+.btn-negative:hover,
 .btn-negative:active {
   background-color: $btn-negative-hover-color;
   color: $btn-negative-font-color;
@@ -179,7 +164,7 @@ html:not(.mobile) .btn-negative:hover,
 }
 .btn:disabled,
 .btn[disabled] {
-  color: #eee;
+  color: rgba(255, 255, 255, .75);
 }
 .btn-outline {
   background-color: $white;
