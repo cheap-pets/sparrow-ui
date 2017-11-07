@@ -19,23 +19,23 @@ input[type="color"] {
   max-width: 100%;
   outline: none;
   padding: 0 10px;
-  -webkit-appearance: none;
   font-size: 14px;
-  border: 1px solid $transparent-dark;
+  border: 1px solid $grey4;
   border-radius: 0;
-  color: $text-black;
-  @mixin transition-background;
+  color: $grey1;
   user-select: auto;
+  appearance: none;
 }
 select:focus,
 textarea:focus,
 input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="reset"]):not([type="file"]):focus {
-  @mixin focus-shadow;
+  border-color: $blue2;
+  box-shadow: 0 0 1px 1px $blue3;
 }
 input:-ms-input-placeholder,
 ::-moz-placeholder,
 ::-webkit-input-placeholder {
-  color: $text-light-grey;
+  color: $grey4;
 }
 textarea {
   padding: 10px;
@@ -96,6 +96,12 @@ label.top {
 .form-group.invalid input {
   border-color: $red500; 
 }
+.form-group.invalid select:focus,
+.form-group.invalid textarea:focus,
+.form-group.invalid input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="reset"]):not([type="file"]):focus {
+  border-color: $red500; 
+  box-shadow: 0 0 1px 1px $red3;
+}
 .input-group {
   font-size: 0;
   position: relative;
@@ -104,8 +110,7 @@ label.top {
   background-color: $white;
 }
 .input-group > .input-icon {
-  height: 100%;
-  line-height: 34px;
+  line-height: 32px;
   display: inline-block;
   font-size: 14px;
 }
@@ -121,21 +126,23 @@ label.top {
   padding-right: 34px;
 }
 .input-icon {
-  width: 34px;
+  width: 32px;
   text-align: center;
   border-radius: 0;
 }
 .inset-icon > .input-icon {
-  top: 0;
-  right: 0;
+  top: 1px;
+  bottom: 1px;
+  right: 1px;
   z-index: 10;
   position: absolute;
 }
 .inset-icon > a.input-icon {
   z-index: 30;
+  cursor: pointer;
 }
 .inset-icon > .input-icon:first-child {
-  left: 0;
+  left: 1px;
 }
 .inset-icon > .input-icon + input {
   padding-left: 34px;
@@ -146,12 +153,12 @@ label.top {
   padding: 0;
 }
 .input-icon:not(.btn) {
-  color: $text-grey;
+  color: $grey2;
 }
 a.input-icon:not(.btn):active,
 a.input-icon.active:not(.btn),
 html:not(.mobile) a.input-icon:hover:not(.btn) {
-  background-color: $transparent-dark;
+  background-color: $grey5;
 }
 a.input-icon:active,
 a.input-icon.active {
