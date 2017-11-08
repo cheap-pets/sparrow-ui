@@ -29,10 +29,8 @@
     <div class="tree-node">
       <div class="tree-node-item">
         <span class="expand-toggle" :class="{expanded: expanded, hidden:!isFolder}" @click="toggle(node)"></span>
-        <a class="hover">
-          <span class="icon icon-ok"></span>
-          <span>{{node.name}}-{{level}}</span>
-        </a>
+        <span class="icon icon-folder"></span>
+        <a>{{node.name}}-{{level}}</a>
       </div>
       <div v-if="expanded">
         <tree-node v-for="node in childNodes" :node="node" :key="node.name" :level="level+1"></tree-node>

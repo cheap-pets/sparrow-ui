@@ -158,21 +158,21 @@ function fillDayRows(year, month, rows) {
 }
 
 var Calendar = { render: function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "calendar" }, [_c('div', { staticClass: "calendar-header" }, [_c('span', [_vm._v(_vm._s(_vm.plainDate.year) + " 年")]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.plainDate.month + 1) + " 月 " + _vm._s(_vm.plainDate.date) + " 日， 星期" + _vm._s(_vm.plainDate.day))])]), _vm._v(" "), _c('div', { staticClass: "bar bar-menu bar-tab" }, [_c('a', { staticClass: "btn btn-link", on: { "tap": function ($event) {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "calendar" }, [_c('div', { staticClass: "calendar-header" }, [_c('span', [_vm._v(_vm._s(_vm.plainDate.year) + " 年")]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.plainDate.month + 1) + " 月 " + _vm._s(_vm.plainDate.date) + " 日， 星期" + _vm._s(_vm.plainDate.day))])]), _vm._v(" "), _c('div', { staticClass: "bar bar-menu bar-tab" }, [_c('a', { staticClass: "btn btn-link", on: { "click": function ($event) {
           _vm.go(-1, 0);
-        } } }, [_vm._v("上一年")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "tap": function ($event) {
+        } } }, [_vm._v("上一年")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "click": function ($event) {
           _vm.go(0, -1);
-        } } }, [_vm._v("上一月")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "tap": function ($event) {
+        } } }, [_vm._v("上一月")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "click": function ($event) {
           _vm.go(null);
-        } } }, [_vm._v("本月")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "tap": function ($event) {
+        } } }, [_vm._v("本月")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "click": function ($event) {
           _vm.go(0, 1);
-        } } }, [_vm._v("下一月")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "tap": function ($event) {
+        } } }, [_vm._v("下一月")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "click": function ($event) {
           _vm.go(1, 0);
         } } }, [_vm._v("下一年")])]), _vm._v(" "), _c('table', { staticClass: "calendar-body" }, [_c('thead', _vm._l(_vm.dayNames, function (n, index) {
       return _c('th', { key: index }, [_vm._v(_vm._s(n))]);
     })), _vm._v(" "), _c('tbody', _vm._l(_vm.dayRows, function (row, index) {
       return _c('tr', { key: index }, _vm._l(row, function (date, idx) {
-        return _c('td', { key: idx, on: { "tap": function ($event) {
+        return _c('td', { key: idx, on: { "click": function ($event) {
               _vm.selectCell(date, idx);
             } } }, [date === _vm.plainDate.date ? _c('a', { staticClass: "date-block active" }, [_vm._v(_vm._s(date))]) : date === _vm.plainToday.date && _vm.plainDate.year === _vm.plainToday.year && _vm.plainDate.month === _vm.plainToday.month ? _c('a', { staticClass: "date-block today" }, [_vm._v(_vm._s(date))]) : date ? _c('a', [_vm._v(_vm._s(date))]) : _vm._e()]);
       }));
@@ -244,7 +244,7 @@ var Calendar = { render: function () {
     }
   },
   watch: {
-    'dateValue': function (v) {
+    dateValue: function (v) {
       this.plainDate = convertPlainDate(v);
       this.resetCells();
     }
@@ -436,7 +436,7 @@ function createSysDialog() {
   if (sysDialog) return;
   let el = document.createElement('div');
   el.className = 'modal-mask';
-  el.innerHTML = '<div class="dialog">' + '<div class="dialog-header"><span></span><a class="dialog-close-btn" modal-action="close"></a></div>' + '<div class="dialog-body"><div class="dialog-message" style="padding: 10px;"></div></div>' + '<div class="dialog-footer">' + '<a class="btn btn-primary btn-ok" modal-action="close">确定</a>' + '<a class="btn btn-link btn-cancel" modal-action="close">取消</a>' + '</div>' + '</div>';
+  el.innerHTML = '<div class="dialog">' + '<div class="dialog-header"><span></span><a class="dialog-close-btn" modal-action="close"></a></div>' + '<div class="dialog-body"><div class="dialog-message" style="padding: 10px;"></div></div>' + '<div class="dialog-footer">' + '<a class="btn btn-primary btn-ok" modal-action="close">确定</a>' + '<a class="btn btn-outline btn-cancel" modal-action="close">取消</a>' + '</div>' + '</div>';
   document.body.appendChild(el);
   el.addEventListener(clickEvent$1, function (event) {
     if (!callbackHandler) return;
@@ -500,7 +500,7 @@ function quickMessage(message, type) {
   if (floatTimer) clearTimeout(floatTimer);
   floatTimer = setTimeout(() => {
     sysMessagePanel.className = 'float-message';
-  }, 3000);
+  }, 2500);
 }
 
 if (document.body) {

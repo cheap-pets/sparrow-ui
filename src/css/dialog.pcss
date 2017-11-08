@@ -36,21 +36,22 @@
   right: 0;
   width: 50px;
   height: 50px;
-  color: rgba(0, 0, 0, .3);
+  color: $grey4;
+  cursor: pointer;
   line-height: 50px;
   text-align: center;
 }
 .dialog-close-btn:before {
   font-family: 'sparrow-icon';
-  font-size: 28px;
+  font-size: 18px;
   content: "\e070";
 }
-html:not(.mobile) .dialog-close-btn:hover {
-  color: rgba(0, 0, 0, .7);
+.dialog-close-btn:hover {
+  color: $blue2;
 }
 .dialog-body {
   top: 0;
-  bottom: 50px;
+  bottom: 54px;
   overflow: auto;
   padding: 15px 20px;
   line-height: 20px;
@@ -60,11 +61,10 @@ html:not(.mobile) .dialog-close-btn:hover {
 }
 .dialog-footer {
   bottom: 0;
-  height: 50px;
-  padding: 8px 15px;
+  height: 54px;
+  padding: 10px 15px;
   text-align: right;
-  border-top: 1px solid $transparent-tiny-dark;
-  background-color: $transparent-tiny-dark;
+  background-color: $grey6;
 }
 .dialog-footer > .btn {
   min-width: 80px;

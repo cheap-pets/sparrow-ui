@@ -9,7 +9,7 @@
   visibility: hidden;
   padding: 10px;
   text-align: center;
-  color: $text-grey;
+  color: $grey2;
   background-color: $transparent-dark;
 }
 .list-group-eof.active {
@@ -18,20 +18,28 @@
 .list-group-item {
   position: relative;
   display: block;
-  line-height: 20px;
-  padding: 7px 15px;
+  line-height: 24px;
+  padding: 8px 10px;
   font-size: 14px;
-  color: $text-black;
+  color: $grey1;
   @mixin text-ellipsis;
 }
+.list-group-item > * {
+  line-height: 20px;
+}
+
 .list-group-item:not(:first-child){
-  border-top: 1px dotted $border-light;
+  border-top: 1px solid $grey5;
 }
-:not(.outline):not(.outline-dotted) > .list-group-item:last-child {
-  border-bottom: 1px dotted $border-light;
+:not(.outline) > .list-group-item:last-child {
+  border-bottom: 1px solid $grey5;
 }
+.divider + .list-group-item {
+  border-top: 0;
+}
+
 .alternant > .list-group-item:nth-of-type(even){
-  background-color: $transparent-tiny-dark;
+  background-color: $grey6;
 }
 .list-group-item.drill {
   padding-right: 35px;
@@ -44,34 +52,31 @@
   transform: translateY(-50%);
   width: 25px;
   content: "\e601";
-  color: $text-light-grey;
+  color: $grey4;
   font-size: 16px;
   font-family: 'sparrow-icon';
 }
 .list-group.gridless > .list-group-item {
   border: 0;
 }
-
+a.list-group-item {
+  color: $grey1;
+}
 a.list-group-item:active,
-html:not(.mobile) a.list-group-item:hover {
-  color: $text-black;
-  background-color: $transparent-half-dark;
+a.list-group-item:hover {
+  background-color: $grey6;
 }
 .list-group-item.active {
-  background-color: $bg-grey;
-  color: $white;
+  background-color: $blue5;
 }
 
-.divider + .list-group-item {
-  border-top: 0;
-}
 .list-group-item > .icon:first-child {
   vertical-align: top;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 .list-group-item p {
   white-space: normal;
   margin: 0;
   font-size: 12px;
-  color: $text-grey;
+  color: $grey2;
 }

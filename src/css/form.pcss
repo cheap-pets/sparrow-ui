@@ -88,13 +88,13 @@ label.top {
   content: "*";
 }
 .form-group.important label:after {
-  color: $deepOrange500;
+  color: $red2;
 }
 .form-group.invalid label {
-  color: $red500;
+  color: $red2;
 }
 .form-group.invalid input {
-  border-color: $red500; 
+  border-color: $red2; 
 }
 .form-group.invalid select:focus,
 .form-group.invalid textarea:focus,
@@ -110,7 +110,7 @@ label.top {
   background-color: $white;
 }
 .input-group > .input-icon {
-  line-height: 32px;
+  line-height: 34px;
   display: inline-block;
   font-size: 14px;
 }
@@ -126,17 +126,20 @@ label.top {
   padding-right: 34px;
 }
 .input-icon {
-  width: 32px;
+  width: 34px;
   text-align: center;
   border-radius: 0;
 }
 .inset-icon > .input-icon {
+  line-height: 32px;
+  width: 32px;
   top: 1px;
   bottom: 1px;
   right: 1px;
   z-index: 10;
   position: absolute;
 }
+
 .inset-icon > a.input-icon {
   z-index: 30;
   cursor: pointer;
@@ -229,11 +232,11 @@ a.input-icon.active {
 }
 .input-group.edit-field:hover,
 input.edit-field:hover {
-  background: #eee;
+  background: $grey5;
 }
 .edit-field > input:hover,
 input.edit-field:hover {
-  border-color: $border-dark;
+  border-color: $grey4;
 }
 .edit-field > input:focus,
 input.edit-field:focus {

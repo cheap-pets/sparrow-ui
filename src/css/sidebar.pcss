@@ -1,0 +1,42 @@
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  bottom: 0;
+  overflow: hidden;
+  background-color: $grey1;
+}
+.sidebar > a {
+  display: block;
+  color: $grey4;
+  cursor: pointer;
+  height: 100px;
+  font-size: 14px;
+  text-align: center;
+  position: relative;
+}
+.sidebar > a:hover {
+  color: $white;
+  background-color: rgba(255, 255, 255, .15);
+}
+.sidebar > a.active {
+  color: $white;
+  background-color: $blue2;
+}
+.sidebar > a .icon {
+  font-size: 24px;
+}
+.sidebar > a > :only-child {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+.sidebar > a .icon + * {
+  margin-top: 10px;
+}
+
+.sidebar + .content {
+  left: 100px;
+}

@@ -16,7 +16,7 @@ function createSysDialog() {
     '<div class="dialog-body"><div class="dialog-message" style="padding: 10px;"></div></div>' +
     '<div class="dialog-footer">' +
     '<a class="btn btn-primary btn-ok" modal-action="close">确定</a>' +
-    '<a class="btn btn-link btn-cancel" modal-action="close">取消</a>' +
+    '<a class="btn btn-outline btn-cancel" modal-action="close">取消</a>' +
     '</div>' +
     '</div>';
   document.body.appendChild(el);
@@ -82,7 +82,7 @@ function quickMessage(message, type) {
   if (floatTimer) clearTimeout(floatTimer);
   floatTimer = setTimeout(() => {
     sysMessagePanel.className = 'float-message';
-  }, 3000);
+  }, 2500);
 }
 
 if (document.body) {

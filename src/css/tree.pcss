@@ -14,26 +14,27 @@
 .tree-node-item {
   display: block;
   max-width: 100%;
-  line-height: 20px;
-  padding: 7px 15px;
-  color: $text-black;
   font-size: 14px;
+  padding: 8px 10px;
+  color: $grey1;
+  line-height: 24px;
   @mixin text-ellipsis;
 }
-.tree-node-item > .expand-toggle:after {
-  margin-left: 0;
+.tree-node-item .expand-toggle,
+.tree-node-item .icon {
+  margin-right: 5px;
+  line-height: 20px;
 }
-.tree-node-item > .hover {
-  padding: 4px;
+.tree-node-item .icon {
+  margin-right: 5px;
 }
 
-.tree-node-item > .hover:hover,
-html:not(.mobile) a.tree-node-item:hover,
-a.tree-node-item:active {
-  color: $text-black;
-  background-color: $transparent-half-dark;
-}
-tree-node-item.active {
-  background-color: $bg-grey;
+.tree-node-item.active {
+  background-color: $blue2;
   color: $white;
+}
+a.tree-node-item:hover,
+a.tree-node-item:active {
+  color: $grey1;
+  background-color: $grey6;
 }

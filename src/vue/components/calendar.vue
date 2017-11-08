@@ -5,11 +5,11 @@
       <p>{{plainDate.month+1}} 月 {{plainDate.date}} 日， 星期{{plainDate.day}}</p>
     </div>
     <div class="bar bar-menu bar-tab">
-      <a class="btn btn-link" @tap="go(-1, 0)">上一年</a>
-      <a class="btn btn-link" @tap="go(0, -1)">上一月</a>
-      <a class="btn btn-link" @tap="go(null)">本月</a>
-      <a class="btn btn-link" @tap="go(0, 1)">下一月</a>
-      <a class="btn btn-link" @tap="go(1, 0)">下一年</a>
+      <a class="btn btn-link" @click="go(-1, 0)">上一年</a>
+      <a class="btn btn-link" @click="go(0, -1)">上一月</a>
+      <a class="btn btn-link" @click="go(null)">本月</a>
+      <a class="btn btn-link" @click="go(0, 1)">下一月</a>
+      <a class="btn btn-link" @click="go(1, 0)">下一年</a>
     </div>
     <table class="calendar-body">
       <thead>
@@ -17,7 +17,7 @@
       </thead>
       <tbody>
         <tr v-for="(row, index) in dayRows" :key="index">
-          <td v-for="(date, idx) in row" :key="idx" @tap="selectCell(date, idx)">
+          <td v-for="(date, idx) in row" :key="idx" @click="selectCell(date, idx)">
             <a v-if="date === plainDate.date" class="date-block active">{{date}}</a>
             <a v-else-if="date === plainToday.date && plainDate.year === plainToday.year && plainDate.month === plainToday.month" class="date-block today">{{date}}</a>
             <a v-else-if="date">{{date}}</a>
@@ -46,7 +46,7 @@ function fillDayRows(year, month, rows) {
   //当月最大天数
   let maxDays = getMaxDaysOfMonth(year, month);
   //当月1日星期几
-  let firstDay = (new Date(year, month, 1)).getDay();
+  let firstDay = new Date(year, month, 1).getDay();
 
   let n = 1;
   for (let i = 0; i < 6; i++) {
@@ -136,7 +136,7 @@ export default {
     }
   },
   watch: {
-    'dateValue': function (v) {
+    dateValue: function(v) {
       this.plainDate = convertPlainDate(v);
       this.resetCells();
     }

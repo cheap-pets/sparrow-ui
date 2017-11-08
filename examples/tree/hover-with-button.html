@@ -22,12 +22,12 @@
 
     .tree-node-item>.btn {
       position: absolute;
-      width: 36px;
+      width: 40px;
       right: 0;
       top: 0;
-      height: 36px;
+      height: 40px;
       border-radius: 0;
-      visibility: hidden;
+      visibility: visible;
       color: #fff;
       background-color: rgba(0, 0, 0, .3);
       cursor: pointer;
@@ -35,10 +35,12 @@
 
     .tree-node-item:hover>.btn {
       visibility: visible;
+      clear: both;
     }
 
     .tree-node-item>.btn>.icon {
-      line-height: 36px;
+      clear: both;
+      line-height: 40px;
     }
   </style>
 </head>
@@ -59,7 +61,7 @@
         <span class="icon icon-ok"></span>
         <span>{{node.name}}-{{level}}</span>
         <a class="btn">
-          <span class="icon icon-option-hori"></span>
+          <div class="icon icon-option-hori"></div>
         </a>
       </a>
       <div v-if="expanded">

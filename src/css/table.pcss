@@ -6,41 +6,41 @@
   background-color: $white;
 }
 .table tr {
-  color: $text-black;
-  border-bottom: 1px dotted $border-light;
+  border-bottom: 1px solid $grey5;
 }
 .table thead > tr:last-child {
-  border-bottom: 2px solid $border-light;
+  border-bottom: 2px solid $grey5;
 }
 .table[gridline="none"] tr {
   border-bottom: 0;
 }
 .table[gridline="all"] td:not(:last-child) {
-  border-right: 1px dotted $border-light;
+  border-right: 1px solid $grey5;
 }
 .table td,
 .table-cell {
-  padding: 7px 10px;
+  color: $grey1;
+  padding: 10px;
   line-height: 20px;
   vertical-align: top;
 }
 .table > thead th,
 .table > thead td {
+  color: $grey3;
   padding-top: 10px;
   padding-bottom: 10px;
-  @mixin strong;
+  font-weight: 500;
+  background-color: $grey6;
 }
-.alternant > tbody > tr:nth-child(odd),
-.alternant > tr:nth-child(odd) {
-  background-color: $transparent-tiny-dark;
+.alternant > tbody > tr:nth-child(even),
+.alternant > tr:nth-child(even) {
+  background-color: $grey6;
 }
 .table > tbody > tr.active,
 .table > tr.active {
-  color: $white;
-  background-color: $bg-grey;
+  background-color: $blue5;
 }
 .hover > tbody > tr:hover,
 .hover > tr:hover {
-  color: $text-black;
-  background-color: $transparent-half-dark;
+  background-color: $grey6;
 }

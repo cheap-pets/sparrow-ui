@@ -10,9 +10,11 @@
     .content {
       padding: 20px;
     }
+
     .content>div {
       margin: 20px 0 30px;
     }
+
     .btn {
       min-width: 88px;
     }
@@ -26,7 +28,7 @@
         <h5 class="text-success">请分别用桌面和手机模式试试！</h5>
         <h3>对话框与浮动消息提示</h3>
         <div>
-          <button class="btn btn-primary" @tap="doAlert">ALERT</button>
+          <button class="btn btn-primary" @click="doAlert">ALERT</button>
           <button class="btn btn-submit" @click="doConfirm">CONFIRM</button>
           <button class="btn btn-negative" @click="doWarn">WARN</button>
         </div>
@@ -55,19 +57,24 @@
       </div>
       <div class="dialog-body">
         <div class="form-group">
-          <label>文本框1</label><input type="text" placeholder="请输入文字">
+          <label>文本框1</label>
+          <input type="text" placeholder="请输入文字">
         </div>
         <div class="form-group">
-          <label>文本框2</label><input type="text" placeholder="请输入文字">
+          <label>文本框2</label>
+          <input type="text" placeholder="请输入文字">
         </div>
         <div class="form-group">
-          <label>文本框3</label><input type="text" placeholder="请输入文字">
+          <label>文本框3</label>
+          <input type="text" placeholder="请输入文字">
         </div>
         <div class="form-group">
-          <label>文本框4</label><input type="text" placeholder="请输入文字">
+          <label>文本框4</label>
+          <input type="text" placeholder="请输入文字">
         </div>
         <div class="form-group">
-          <label>文本框5</label><input type="text" placeholder="请输入文字">
+          <label>文本框5</label>
+          <input type="text" placeholder="请输入文字">
         </div>
       </div>
       <div class="dialog-footer">
@@ -81,38 +88,40 @@
   <script type="text/javascript" src="../vue/vuex.js"></script>
   <script type="text/javascript" src="../../dist/sparrow.js"></script>
   <script type="text/javascript">
-    new Vue({
-      el: '.page',
-      methods: {
-        doAlert: function () {
-          sparrow.alert('一般提示', function (btn) {
-            alert(window.document.documentElement.className);
-            sparrow.showMessage(btn);
-          });
-        },
-        doConfirm: function () {
-          sparrow.confirm('确认提示', function (btn) {
-            sparrow.showMessage(btn, 'success');
-          });
-        },
-        doWarn: function () {
-          sparrow.warn('确认警告', function (btn) {
-            sparrow.showMessage(btn, 'warn');
-          });
-        },
-        showFloatInfo: function () {
-          sparrow.showMessage('消息提示');
-        },
-        showFloatSuccess: function () {
-          sparrow.showMessage('成功提示', 'success');
-        },
-        showFloatWarning: function () {
-          sparrow.showMessage('错误提示', 'warn');
-        },
-        openDialog: function () {
+    (function () {
+      return new Vue({
+        el: '.page',
+        methods: {
+          doAlert: function () {
+            sparrow.alert('一般提示', function (btn) {
+              alert(window.document.documentElement.className);
+              sparrow.showMessage(btn);
+            });
+          },
+          doConfirm: function () {
+            sparrow.confirm('确认提示', function (btn) {
+              sparrow.showMessage(btn, 'success');
+            });
+          },
+          doWarn: function () {
+            sparrow.warn('确认警告', function (btn) {
+              sparrow.showMessage(btn, 'warn');
+            });
+          },
+          showFloatInfo: function () {
+            sparrow.showMessage('消息提示');
+          },
+          showFloatSuccess: function () {
+            sparrow.showMessage('成功提示', 'success');
+          },
+          showFloatWarning: function () {
+            sparrow.showMessage('错误提示', 'warn');
+          },
+          openDialog: function () {
 
+          }
         }
-      }
-    });
+      });
+    })();
   </script>
 </body>

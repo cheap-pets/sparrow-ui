@@ -5,6 +5,8 @@
     "html"
   ],
   "globals": {
+    "Vue": false,
+    "sparrow": false
   },
   "env": {
     "browser": true,
@@ -22,6 +24,11 @@
     "spaced-comment": [
       0,
       "always"
+    ],
+    // 提示函数括号前的空格
+    "space-before-function-paren": [
+      0,
+      "ignore"
     ],
     // 对长度超过120长度的代码行进行警告，并忽略注释、字符串等情况
     "max-len": [

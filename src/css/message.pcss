@@ -1,0 +1,37 @@
+.info {
+  background-color: $blue2;
+  color: #fff;
+}
+.warn {
+  background-color: $yellow2;
+  color: #fff;
+}
+.error {
+  background-color: $red2;
+  color: #fff;
+}
+.success {
+  background-color: $green2;
+  color: #fff;
+}
+
+.float-message {
+  position: fixed;
+  z-index: 210;
+  top: 0;
+  left: 50%;
+  min-width: 300px;
+  opacity: 0;
+  text-align: center;
+  color: $white;
+  line-height: 20px;
+  padding: 12px 15px;
+  transform: translate3d(-50%, -100%, 0);
+  transition: all .5s ease-in-out;
+  @mixin shadow;
+  @mixin text-ellipsis;
+}
+.float-message.active {
+  opacity: 0.8;
+  transform: translate3d(-50%, 0, 0);
+}

@@ -68,15 +68,33 @@
       <div class="dropdown list-group">
         <a class="list-group-item">x</a>
         <a class="list-group-item">y</a>
+        <div class="divider line"></div>
         <a class="list-group-item">z</a>
       </div>
     </div>
   </div>
   <div class="form-group">
-    <label>覆盖测试</label>
+      <label>包含图标</label>
+      <div class="input-group inset-icon dropdown-group">
+        <input type="text" dropdown-action="toggle" readonly><span class="input-icon caret"></span>
+        <div class="dropdown list-group">
+          <a class="list-group-item"><span class="icon icon-safe"></span>安全</a>
+          <a class="list-group-item"><span class="icon icon-call"></span>电话</a>
+          <a class="list-group-item"><span class="icon icon-camera"></span>拍照</a>
+          <a class="list-group-item"><span class="icon icon-city"></span>都市</a>
+        </div>
+      </div>
+    </div>
+  <div class="form-group">
+    <label>分组选择</label>
     <div class="input-group inset-icon dropdown-group">
       <input type="text" dropdown-action="open" readonly><span class="input-icon caret"></span>
       <div class="dropdown list-group" dropdown-action="close">
+        <div class="divider">分组一</div>
+        <a class="list-group-item">a</a>
+        <a class="list-group-item">b</a>
+        <a class="list-group-item">c</a>
+        <div class="divider">分组二</div>
         <a class="list-group-item">x</a>
         <a class="list-group-item">y</a>
         <a class="list-group-item">z</a>
