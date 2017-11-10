@@ -76,8 +76,7 @@ function createSysMessagePanel() {
 function quickMessage(message, type) {
   if (!sysMessagePanel) createSysMessagePanel();
   sysMessagePanel.innerText = message;
-  let cls = 'float-message active ';
-  cls += (type === 'success') ? 'bg-success' : (type === 'warn' ? 'bg-negative' : 'bg-primary');
+  let cls = 'float-message active ' + type;
   sysMessagePanel.className = cls;
   if (floatTimer) clearTimeout(floatTimer);
   floatTimer = setTimeout(() => {

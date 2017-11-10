@@ -51,7 +51,7 @@
   top: 50%;
   transform: translateY(-50%);
   width: 25px;
-  content: "\e601";
+  content: "\e602";
   color: $grey4;
   font-size: 16px;
   font-family: 'sparrow-icon';
@@ -62,21 +62,22 @@
 a.list-group-item {
   color: $grey1;
 }
-a.list-group-item:active,
-a.list-group-item:hover {
-  background-color: $grey6;
-}
-.list-group-item.active {
-  background-color: $blue5;
-}
-
 .list-group-item > .icon:first-child {
   vertical-align: top;
   margin-right: 10px;
+  color: $grey3;
 }
 .list-group-item p {
   white-space: normal;
   margin: 0;
   font-size: 12px;
   color: $grey2;
+}
+
+a.list-group-item:active,
+a.list-group-item:hover {
+  background-color: $grey6;
+}
+.list-group > .list-group-item.active {
+  background-color: $blue5;
 }

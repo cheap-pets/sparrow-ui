@@ -1,0 +1,13 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions", "chrome >= 36", "ie >= 10"]
+        },
+        "modules": false
+      }
+    ]
+  ]
+}

@@ -16,8 +16,12 @@
   border: 1px solid $blue2;
   background-color: $white;
   opacity: 0;
+  overflow: auto;
   @mixin shadow;
   @mixin transition-opacity;
+}
+.dropdown.menu {
+  border: 0;
 }
 .dropdown:not(.top) {
   top: 100%;

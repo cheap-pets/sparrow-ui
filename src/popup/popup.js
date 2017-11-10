@@ -14,95 +14,71 @@ const DD_TARGET_ATTR = 'dropdown-target';
 const MODAL_ACTION_ATTR = 'modal-action';
 const MODAL_TARGET_ATTR = 'modal-target';
 
-function findAction(el) {
-  let act;
-  if (el.getAttribute) {
-    act = el.getAttribute(POP_ACTION_ATTR) || el.getAttribute(DD_ACTION_ATTR) || el.getAttribute(MODAL_ACTION_ATTR);
-  }
-  return act;
+function getAction(el) {
+  return el.getAttribute(POP_ACTION_ATTR) || el.getAttribute(DD_ACTION_ATTR) || el.getAttribute(MODAL_ACTION_ATTR);
 }
 
-function findTarget(el) {
-  let tar;
-  if (el.getAttribute) {
-    tar = el.getAttribute(POP_TARGET_ATTR) || el.getAttribute(DD_TARGET_ATTR) || el.getAttribute(MODAL_TARGET_ATTR);
-  }
-  return tar;
-}
-
-function findPopupElement(parent) {
-  return parent.querySelector('.dropdown,.modal-mask,.popup,[popup]');
+function getTargetSelector(el) {
+  return el.getAttribute(POP_TARGET_ATTR) || el.getAttribute(DD_TARGET_ATTR) || el.getAttribute(MODAL_TARGET_ATTR);
 }
 
 function isGroupElement(el) {
-  let cls = el.className;
+  let classes = el.classList;
   let attr = el.getAttribute('popup-group');
-  return cls.indexOf('dropdown-group') >= 0 || cls.indexOf('popup-group') >= 0 || (attr !== null && attr !== undefined);
+  return classes.contains('dropdown-group') || classes.contains('popup-group') || attr != null;
 }
 
-function isMaskElement(el) {
-  return el.className && el.className.indexOf('modal-mask') >= 0;
+function queryPopup(parent) {
+  return parent.querySelector('.dropdown,.modal-mask,.popup,[popup]') || false;
+}
+
+function queryActivePopup() {
+  return document.querySelector('.dropdown.active,.popup.active,.active[popup]');
 }
 
 //在document对象 click 或 tap 事件中处理弹出相关动作
 document.addEventListener(clickEvent, function(event) {
-  //触发事件的元素
-  let srcElement = event.srcElement || event.target;
-  let popupElement;
-  //表示点击在空白区域
-  let isMask = isMaskElement(srcElement);
-  //获取指定动作
-  let action = findAction(srcElement);
-  if (action === 'none') {
-    return;
-  } else if (isMask) {
-    popupElement = srcElement;
-    action = 'close';
+  //需要检查弹出属性的元素
+  let el = event.srcElement || event.target;
+  //弹出元素
+  let popup;
+  //弹出动作
+  let action;
+  //查找层级
+  let level = 0;
+  while (el && el !== document.body && level < 5) {
+    action || (action = getAction(el));
+    if (el.className.indexOf('modal-mask') >= 0) {
+      action || (action = 'close');
+      popup = el;
+    } else {
+      const selector = getTargetSelector(el);
+      if (selector) {
+        popup = document.querySelector(selector) || false;
+        action || (action = 'open');
+      } else {
+        isGroupElement(el) && (popup = queryPopup(el));
+      }
+    }
+    el = popup || popup === false ? null : el.parentNode;
+    level++;
   }
-  if (!isMask) {
-    let target = action ? findTarget(srcElement) : undefined;
-
-    //查找组元素（最多找5层）
-    let seek = srcElement === document.body ? srcElement : srcElement.parentNode;
-    let groupElement;
-    let count = 0;
-    while (count++ < 5 && seek && seek !== document.body) {
-      action || (action = findAction(seek));
-      if (action === 'none') {
-        return;
-      }
-      target || (action && (target = findTarget(seek)));
-      if (isMaskElement(seek)) {
-        popupElement = seek;
-        break;
-      }
-      if (isGroupElement(seek)) {
-        groupElement = seek;
-        break;
-      }
-      seek = seek.parentNode;
-    }
-    popupElement =
-      popupElement ||
-      (target ? document.querySelector(target) : groupElement ? findPopupElement(groupElement) : undefined);
-
-    //获取并隐藏之前弹出的元素
-    let lastElement = document.querySelector('.dropdown.active,.popup.active,.active[popup]');
-    if (lastElement && lastElement !== popupElement) {
-      lastElement.classList.remove('active');
-    }
+  //获取并隐藏之前弹出的元素
+  let last = queryActivePopup();
+  if (last && last !== popup) {
+    last.classList.remove('active');
   }
   //操作当前组内下拉元素
-  if (popupElement) {
+  if (popup) {
     switch (action) {
       case 'open':
-        popupElement.classList.add('active');
+        popup.classList.add('active');
         break;
       case 'toggle':
-        popupElement.classList.toggle('active');
+        popup.classList.toggle('active');
         break;
       case 'close':
-        popupElement.classList.remove('active');
+        popup.classList.remove('active');
         break;
     }
   }

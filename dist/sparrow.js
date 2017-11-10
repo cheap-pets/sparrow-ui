@@ -4,26 +4,26 @@
 	(factory((global.sparrow = {})));
 }(this, (function (exports) { 'use strict';
 
-let userAgent = window.navigator.userAgent.toLowerCase();
+var userAgent = window.navigator.userAgent.toLowerCase();
 
 function hasFlag(flag) {
   return userAgent.indexOf(flag) !== -1;
 }
 
-const isWindows = hasFlag('windows');
-const isWindowsPhone = isWindows && hasFlag('phone');
+var isWindows = hasFlag('windows');
+var isWindowsPhone = isWindows && hasFlag('phone');
 
-const isAndroid = !isWindows && hasFlag('android');
-const isAndroidPhone = isAndroid && hasFlag('mobile');
+var isAndroid = !isWindows && hasFlag('android');
+var isAndroidPhone = isAndroid && hasFlag('mobile');
 
-const isIphone = !isWindows && hasFlag('iphone');
-const isIpad = hasFlag('ipad');
-const isIpod = hasFlag('ipod');
-const isIos = isIphone || isIpad || isIpod;
+var isIphone = !isWindows && hasFlag('iphone');
+var isIpad = hasFlag('ipad');
+var isIpod = hasFlag('ipod');
+var isIos = isIphone || isIpad || isIpod;
 
-const isMobile = isWindowsPhone || isAndroidPhone || isIphone || isIpod;
+var isMobile = isWindowsPhone || isAndroidPhone || isIphone || isIpod;
 
-const platform = isWindows ? 'windows' : isAndroid ? 'android' : isIos ? 'ios' : 'unknow';
+var platform = isWindows ? 'windows' : isAndroid ? 'android' : isIos ? 'ios' : 'unknow';
 
 if (isMobile) {
   window.document.documentElement.classList.add('mobile');
@@ -34,12 +34,12 @@ function orientation() {
 }
 
 var device = {
-  isMobile,
-  isIphone,
-  isIpad,
-  isIpod,
-  isAndroidPhone,
-  isWindowsPhone,
+  isMobile: isMobile,
+  isIphone: isIphone,
+  isIpad: isIpad,
+  isIpod: isIpod,
+  isAndroidPhone: isAndroidPhone,
+  isWindowsPhone: isWindowsPhone,
   platform: platform,
   orientation: orientation
 };
@@ -62,9 +62,9 @@ if (!window.cancelAnimationFrame) {
   };
 }
 
-const MAX_DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+var MAX_DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-let dateOptions = {
+var dateOptions = {
   DAY_SHORT_NAMES: ['日', '一', '二', '三', '四', '五', '六']
 };
 
@@ -80,8 +80,8 @@ function getMaxDaysOfMonth(year, month) {
 //example: formatDate(date, 'yyyy-MM-dd hh:mm:ss.SSS');
 function formatDate(date, format) {
   format = format || 'yyyy-MM-dd';
-  let y = date.getFullYear();
-  let o = {
+  var y = date.getFullYear();
+  var o = {
     'M+': date.getMonth() + 1, //月
     'd+': date.getDate(), //日
     'h+': date.getHours(), //时
@@ -92,9 +92,9 @@ function formatDate(date, format) {
   if (/(y+)/.test(format)) {
     format = format.replace(RegExp.$1, ('' + y).substr(4 - RegExp.$1.length));
   }
-  for (let k in o) {
+  for (var k in o) {
     if (new RegExp('(' + k + ')').test(format)) {
-      let v;
+      var v = void 0;
       if (RegExp.$1.length === 2) {
         v = ('00' + o[k]).substr(('' + o[k]).length);
       } else if (RegExp.$1.length === 3) {
@@ -118,61 +118,61 @@ function convertPlainDate(date) {
   };
 }
 
-const DAY_NAMES = dateOptions.DAY_SHORT_NAMES;
+var DAY_NAMES = dateOptions.DAY_SHORT_NAMES;
 
 function fillDayRows(year, month, rows) {
   //初始化空的月历数组
   if (!rows.length) {
-    for (let i = 0; i < 6; i++) {
-      let row = [];
-      for (let j = 0; j < 7; j++) {
+    for (var i = 0; i < 6; i++) {
+      var row = [];
+      for (var j = 0; j < 7; j++) {
         row.push(null);
       }
       rows.push(row);
     }
   }
   //当月最大天数
-  let maxDays = getMaxDaysOfMonth(year, month);
+  var maxDays = getMaxDaysOfMonth(year, month);
   //当月1日星期几
-  let firstDay = new Date(year, month, 1).getDay();
+  var firstDay = new Date(year, month, 1).getDay();
 
-  let n = 1;
-  for (let i = 0; i < 6; i++) {
-    for (let j = 0; j < 7; j++) {
-      if ((i !== 0 || j >= firstDay) && n <= maxDays) {
-        if (rows[i].$set) {
-          rows[i].$set(j, n);
+  var n = 1;
+  for (var _i = 0; _i < 6; _i++) {
+    for (var _j = 0; _j < 7; _j++) {
+      if ((_i !== 0 || _j >= firstDay) && n <= maxDays) {
+        if (rows[_i].$set) {
+          rows[_i].$set(_j, n);
         } else {
-          rows[i][j] = n;
+          rows[_i][_j] = n;
         }
         n++;
       } else {
-        if (rows[i].$set) {
-          rows[i].$set(j, null);
+        if (rows[_i].$set) {
+          rows[_i].$set(_j, null);
         } else {
-          rows[i][j] = null;
+          rows[_i][_j] = null;
         }
       }
     }
   }
 }
 
-var Calendar = { render: function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "calendar" }, [_c('div', { staticClass: "calendar-header" }, [_c('span', [_vm._v(_vm._s(_vm.plainDate.year) + " 年")]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.plainDate.month + 1) + " 月 " + _vm._s(_vm.plainDate.date) + " 日， 星期" + _vm._s(_vm.plainDate.day))])]), _vm._v(" "), _c('div', { staticClass: "bar bar-menu bar-tab" }, [_c('a', { staticClass: "btn btn-link", on: { "click": function ($event) {
+var Calendar = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "calendar" }, [_c('div', { staticClass: "calendar-header" }, [_c('span', [_vm._v(_vm._s(_vm.plainDate.year) + " 年")]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.plainDate.month + 1) + " 月 " + _vm._s(_vm.plainDate.date) + " 日， 星期" + _vm._s(_vm.plainDate.day))])]), _vm._v(" "), _c('div', { staticClass: "bar bar-menu bar-tab" }, [_c('a', { staticClass: "btn btn-link", on: { "click": function click($event) {
           _vm.go(-1, 0);
-        } } }, [_vm._v("上一年")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "click": function ($event) {
+        } } }, [_vm._v("上一年")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "click": function click($event) {
           _vm.go(0, -1);
-        } } }, [_vm._v("上一月")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "click": function ($event) {
+        } } }, [_vm._v("上一月")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "click": function click($event) {
           _vm.go(null);
-        } } }, [_vm._v("本月")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "click": function ($event) {
+        } } }, [_vm._v("本月")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "click": function click($event) {
           _vm.go(0, 1);
-        } } }, [_vm._v("下一月")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "click": function ($event) {
+        } } }, [_vm._v("下一月")]), _vm._v(" "), _c('a', { staticClass: "btn btn-link", on: { "click": function click($event) {
           _vm.go(1, 0);
         } } }, [_vm._v("下一年")])]), _vm._v(" "), _c('table', { staticClass: "calendar-body" }, [_c('thead', _vm._l(_vm.dayNames, function (n, index) {
       return _c('th', { key: index }, [_vm._v(_vm._s(n))]);
     })), _vm._v(" "), _c('tbody', _vm._l(_vm.dayRows, function (row, index) {
       return _c('tr', { key: index }, _vm._l(row, function (date, idx) {
-        return _c('td', { key: idx, on: { "click": function ($event) {
+        return _c('td', { key: idx, on: { "click": function click($event) {
               _vm.selectCell(date, idx);
             } } }, [date === _vm.plainDate.date ? _c('a', { staticClass: "date-block active" }, [_vm._v(_vm._s(date))]) : date === _vm.plainToday.date && _vm.plainDate.year === _vm.plainToday.year && _vm.plainDate.month === _vm.plainToday.month ? _c('a', { staticClass: "date-block today" }, [_vm._v(_vm._s(date))]) : date ? _c('a', [_vm._v(_vm._s(date))]) : _vm._e()]);
       }));
@@ -180,53 +180,54 @@ var Calendar = { render: function () {
   }, staticRenderFns: [],
   props: ['dateValue'],
   computed: {
-    dayNames() {
+    dayNames: function dayNames() {
       return DAY_NAMES;
     }
   },
-  data() {
-    let today = new Date();
-    let plainToday = convertPlainDate(today);
-    let plainDate = convertPlainDate(today);
+  data: function data() {
+    var today = new Date();
+    var plainToday = convertPlainDate(today);
+    var plainDate = convertPlainDate(today);
     return {
       view: 'days',
-      plainToday,
-      plainDate,
+      plainToday: plainToday,
+      plainDate: plainDate,
       dayRows: []
     };
   },
-  created() {
-    let d = this.dateValue;
+  created: function created() {
+    var d = this.dateValue;
     if (d) {
       this.plainDate = convertPlainDate(d);
     }
     this.resetCells();
   },
+
   methods: {
-    resetCells() {
+    resetCells: function resetCells() {
       fillDayRows(this.plainDate.year, this.plainDate.month, this.dayRows);
     },
-    selectCell(date, idx) {
+    selectCell: function selectCell(date, idx) {
       if (date) {
-        let pd = this.plainDate;
+        var pd = this.plainDate;
         pd.date = date;
         pd.day = DAY_NAMES[idx];
         this.$emit('datechange', new Date(pd.year, pd.month, pd.date));
       }
     },
-    go(diffY, diffM) {
-      let y;
-      let m;
-      let pd = this.plainDate;
+    go: function go(diffY, diffM) {
+      var y = void 0;
+      var m = void 0;
+      var pd = this.plainDate;
       if (diffY === null) {
-        let pt = this.plainToday;
+        var pt = this.plainToday;
         y = pt.year;
         m = pt.month;
       } else {
         y = pd.year + diffY;
         m = pd.month + diffM;
       }
-      let d = pd.date;
+      var d = pd.date;
       if (m < 0) {
         y--;
         m = 11;
@@ -234,55 +235,56 @@ var Calendar = { render: function () {
         y++;
         m = 0;
       }
-      let max = getMaxDaysOfMonth(y, m);
+      var max = getMaxDaysOfMonth(y, m);
       if (d > max) {
         d = max;
       }
-      let date = new Date(y, m, d);
+      var date = new Date(y, m, d);
       this.plainDate = convertPlainDate(date);
       this.resetCells();
     }
   },
   watch: {
-    dateValue: function (v) {
+    dateValue: function dateValue(v) {
       this.plainDate = convertPlainDate(v);
       this.resetCells();
     }
   }
 };
 
-var calendarInput = { render: function () {
+var calendarInput = { render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "input-group inset-icon dropdown-group" }, [_c('input', { attrs: { "type": "text", "dropdown-action": "toggle", "readonly": "readonly" }, domProps: { "value": _vm.date } }), _c('span', { staticClass: "input-icon icon icon-event" }), _vm._v(" "), _c('my-calendar', { staticClass: "dropdown", attrs: { "date-value": _vm.date }, on: { "datechange": _vm.dateChange } })], 1);
   }, staticRenderFns: [],
   props: ['value'],
-  data() {
+  data: function data() {
     return {
       date: ''
     };
   },
+
   components: {
     'my-calendar': Calendar
   },
   methods: {
-    dateChange(date) {
+    dateChange: function dateChange(date) {
       this.date = formatDate(date);
       this.$emit('datechange', date);
     }
   },
   watch: {
-    'value': function (v) {
+    'value': function value(v) {
       if (v) {
-        let pd = convertPlainDate(v);
-        let d = new Date(pd.year, pd.month, pd.date);
+        var pd = convertPlainDate(v);
+        var d = new Date(pd.year, pd.month, pd.date);
         this.date = formatDate(d);
       }
     }
   },
-  created() {
-    let v = this.value;
+  created: function created() {
+    var v = this.value;
     if (v) {
-      let pd = convertPlainDate(v);
-      let d = new Date(pd.year, pd.month, pd.date);
+      var pd = convertPlainDate(v);
+      var d = new Date(pd.year, pd.month, pd.date);
       this.date = formatDate(d);
     }
   }
@@ -296,10 +298,10 @@ var index = Object.freeze({
 });
 
 function dispatchCustomEvent(el, eventName, canBubble, cancelable, detail, originalEvent) {
-  let e = document.createEvent('CustomEvent');
+  var e = document.createEvent('CustomEvent');
   e.initCustomEvent(eventName, canBubble, cancelable, detail);
   e.originalEvent = originalEvent;
-  let ret = el.dispatchEvent(e);
+  var ret = el.dispatchEvent(e);
   if (ret === false && originalEvent) {
     originalEvent.preventDefault();
   }
@@ -307,105 +309,83 @@ function dispatchCustomEvent(el, eventName, canBubble, cancelable, detail, origi
 }
 
 //点击事件名称
-const clickEvent = device.isMobile ? 'tap' : 'click';
+var clickEvent = device.isMobile ? 'tap' : 'click';
 
 //用于弹出元素的一些元素、属性名称常量
-const POP_ACTION_ATTR = 'popup-action';
-const POP_TARGET_ATTR = 'popup-target';
+var POP_ACTION_ATTR = 'popup-action';
+var POP_TARGET_ATTR = 'popup-target';
 //兼容以前的 dropdown 命名
-const DD_ACTION_ATTR = 'dropdown-action';
-const DD_TARGET_ATTR = 'dropdown-target';
+var DD_ACTION_ATTR = 'dropdown-action';
+var DD_TARGET_ATTR = 'dropdown-target';
 //兼容以前的 modal 命名
-const MODAL_ACTION_ATTR = 'modal-action';
-const MODAL_TARGET_ATTR = 'modal-target';
+var MODAL_ACTION_ATTR = 'modal-action';
+var MODAL_TARGET_ATTR = 'modal-target';
 
-function findAction(el) {
-  let act;
-  if (el.getAttribute) {
-    act = el.getAttribute(POP_ACTION_ATTR) || el.getAttribute(DD_ACTION_ATTR) || el.getAttribute(MODAL_ACTION_ATTR);
-  }
-  return act;
+function getAction(el) {
+  return el.getAttribute(POP_ACTION_ATTR) || el.getAttribute(DD_ACTION_ATTR) || el.getAttribute(MODAL_ACTION_ATTR);
 }
 
-function findTarget(el) {
-  let tar;
-  if (el.getAttribute) {
-    tar = el.getAttribute(POP_TARGET_ATTR) || el.getAttribute(DD_TARGET_ATTR) || el.getAttribute(MODAL_TARGET_ATTR);
-  }
-  return tar;
-}
-
-function findPopupElement(parent) {
-  return parent.querySelector('.dropdown,.modal-mask,.popup,[popup]');
+function getTargetSelector(el) {
+  return el.getAttribute(POP_TARGET_ATTR) || el.getAttribute(DD_TARGET_ATTR) || el.getAttribute(MODAL_TARGET_ATTR);
 }
 
 function isGroupElement(el) {
-  let cls = el.className;
-  let attr = el.getAttribute('popup-group');
-  return cls.indexOf('dropdown-group') >= 0 || cls.indexOf('popup-group') >= 0 || attr !== null && attr !== undefined;
+  var classes = el.classList;
+  var attr = el.getAttribute('popup-group');
+  return classes.contains('dropdown-group') || classes.contains('popup-group') || attr != null;
 }
 
-function isMaskElement(el) {
-  return el.className && el.className.indexOf('modal-mask') >= 0;
+function queryPopup(parent) {
+  return parent.querySelector('.dropdown,.modal-mask,.popup,[popup]') || false;
+}
+
+function queryActivePopup() {
+  return document.querySelector('.dropdown.active,.popup.active,.active[popup]');
 }
 
 //在document对象 click 或 tap 事件中处理弹出相关动作
 document.addEventListener(clickEvent, function (event) {
-  //触发事件的元素
-  let srcElement = event.srcElement || event.target;
-  let popupElement;
-  //表示点击在空白区域
-  let isMask = isMaskElement(srcElement);
-  //获取指定动作
-  let action = findAction(srcElement);
-  if (action === 'none') {
-    return;
-  } else if (isMask) {
-    popupElement = srcElement;
-    action = 'close';
+  //需要检查弹出属性的元素
+  var el = event.srcElement || event.target;
+  //弹出元素
+  var popup = void 0;
+  //弹出动作
+  var action = void 0;
+  //查找层级
+  var level = 0;
+  while (el && el !== document.body && level < 5) {
+    action || (action = getAction(el));
+    if (el.className.indexOf('modal-mask') >= 0) {
+      action || (action = 'close');
+      popup = el;
+    } else {
+      var selector = getTargetSelector(el);
+      if (selector) {
+        popup = document.querySelector(selector) || false;
+        action || (action = 'open');
+      } else {
+        isGroupElement(el) && (popup = queryPopup(el));
+      }
+    }
+    el = popup || popup === false ? null : el.parentNode;
+    level++;
   }
-  if (!isMask) {
-    let target = action ? findTarget(srcElement) : undefined;
-
-    //查找组元素（最多找5层）
-    let seek = srcElement === document.body ? srcElement : srcElement.parentNode;
-    let groupElement;
-    let count = 0;
-    while (count++ < 5 && seek && seek !== document.body) {
-      action || (action = findAction(seek));
-      if (action === 'none') {
-        return;
-      }
-      target || action && (target = findTarget(seek));
-      if (isMaskElement(seek)) {
-        popupElement = seek;
-        break;
-      }
-      if (isGroupElement(seek)) {
-        groupElement = seek;
-        break;
-      }
-      seek = seek.parentNode;
-    }
-    popupElement = popupElement || (target ? document.querySelector(target) : groupElement ? findPopupElement(groupElement) : undefined);
-
-    //获取并隐藏之前弹出的元素
-    let lastElement = document.querySelector('.dropdown.active,.popup.active,.active[popup]');
-    if (lastElement && lastElement !== popupElement) {
-      lastElement.classList.remove('active');
-    }
+  //获取并隐藏之前弹出的元素
+  var last = queryActivePopup();
+  if (last && last !== popup) {
+    last.classList.remove('active');
   }
   //操作当前组内下拉元素
-  if (popupElement) {
+  if (popup) {
     switch (action) {
       case 'open':
-        popupElement.classList.add('active');
+        popup.classList.add('active');
         break;
       case 'toggle':
-        popupElement.classList.toggle('active');
+        popup.classList.toggle('active');
         break;
       case 'close':
-        popupElement.classList.remove('active');
+        popup.classList.remove('active');
         break;
     }
   }
@@ -423,26 +403,26 @@ function hidePopup(el, arg) {
   dispatchCustomEvent(el, 'hide', false, false, arg);
 }
 //兼容老的方法名
-let modalOpen = showPopup;
-let modalClose = hidePopup;
+var modalOpen = showPopup;
+var modalClose = hidePopup;
 
 //点击事件名称
-const clickEvent$1 = device.isMobile ? 'tap' : 'click';
+var clickEvent$1 = device.isMobile ? 'tap' : 'click';
 
 //消息对话框
-let sysDialog;
-let callbackHandler;
+var sysDialog = void 0;
+var callbackHandler = void 0;
 function createSysDialog() {
   if (sysDialog) return;
-  let el = document.createElement('div');
+  var el = document.createElement('div');
   el.className = 'modal-mask';
   el.innerHTML = '<div class="dialog">' + '<div class="dialog-header"><span></span><a class="dialog-close-btn" modal-action="close"></a></div>' + '<div class="dialog-body"><div class="dialog-message" style="padding: 10px;"></div></div>' + '<div class="dialog-footer">' + '<a class="btn btn-primary btn-ok" modal-action="close">确定</a>' + '<a class="btn btn-outline btn-cancel" modal-action="close">取消</a>' + '</div>' + '</div>';
   document.body.appendChild(el);
   el.addEventListener(clickEvent$1, function (event) {
     if (!callbackHandler) return;
-    let eventEl = event.srcElement || event.target;
-    let cls = eventEl.classList;
-    let act;
+    var eventEl = event.srcElement || event.target;
+    var cls = eventEl.classList;
+    var act = void 0;
     if (cls.contains('modal-mask') || cls.contains('btn-cancel') || cls.contains('dialog-close-btn')) {
       act = 'cancel';
     } else if (cls.contains('btn-ok')) {
@@ -455,9 +435,9 @@ function createSysDialog() {
 
 function showDialog(messageType, message, callback) {
   if (!sysDialog) createSysDialog();
-  let h = sysDialog.querySelector('.dialog-header>span');
-  let btnOk = sysDialog.querySelector('.btn-ok');
-  let btnCancel = sysDialog.querySelector('.btn-cancel');
+  var h = sysDialog.querySelector('.dialog-header>span');
+  var btnOk = sysDialog.querySelector('.btn-ok');
+  var btnCancel = sysDialog.querySelector('.btn-cancel');
   callbackHandler = callback;
   switch (messageType) {
     case 'alert':
@@ -481,11 +461,11 @@ function showDialog(messageType, message, callback) {
 }
 
 //快速浮动消息
-let sysMessagePanel;
-let floatTimer;
+var sysMessagePanel = void 0;
+var floatTimer = void 0;
 function createSysMessagePanel() {
   if (sysMessagePanel) return;
-  let el = document.createElement('div');
+  var el = document.createElement('div');
   el.className = 'float-message';
   document.body.appendChild(el);
   sysMessagePanel = el;
@@ -494,11 +474,10 @@ function createSysMessagePanel() {
 function quickMessage(message, type) {
   if (!sysMessagePanel) createSysMessagePanel();
   sysMessagePanel.innerText = message;
-  let cls = 'float-message active ';
-  cls += type === 'success' ? 'bg-success' : type === 'warn' ? 'bg-negative' : 'bg-primary';
+  var cls = 'float-message active ' + type;
   sysMessagePanel.className = cls;
   if (floatTimer) clearTimeout(floatTimer);
-  floatTimer = setTimeout(() => {
+  floatTimer = setTimeout(function () {
     sysMessagePanel.className = 'float-message';
   }, 2500);
 }

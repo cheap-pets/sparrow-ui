@@ -2,19 +2,43 @@
   background-color: $blue2;
   color: #fff;
 }
-.warn {
-  background-color: $yellow2;
-  color: #fff;
-}
-.error {
-  background-color: $red2;
-  color: #fff;
-}
 .success {
   background-color: $green2;
   color: #fff;
 }
+.warning {
+  background-color: $yellow2;
+  color: #fff;
+}
+.error, .danger {
+  background-color: $red2;
+  color: #fff;
+}
 
+.alert {
+  color: $grey2;
+  padding: 10px;
+  line-height: 16px;
+  background-color: $yellow5;
+  border: 1px solid rgba(0, 0, 0, .15);
+}
+
+.alert.info {
+  background-color: $blue5;
+}
+.alert.success {
+  background-color: $green4;
+}
+.alert.warning {
+  background-color: $yellow4;
+}
+.alert.error, .alert.danger {
+  background-color: $red5;
+}
+
+.float-message {
+  position: absolute;
+}
 .float-message {
   position: fixed;
   z-index: 210;

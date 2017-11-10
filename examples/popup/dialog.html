@@ -44,7 +44,8 @@
         <div>
           <button class="btn btn-primary" @click="showFloatInfo">消息提示</button>
           <button class="btn btn-submit" @click="showFloatSuccess">成功提示</button>
-          <button class="btn btn-negative" @click="showFloatWarning">错误提示</button>
+          <button class="btn btn-negative" @click="showFloatWarning">警告提示</button>
+          <button class="btn btn-negative" @click="showFloatDanger">危险提示</button>
         </div>
       </div>
     </div>
@@ -105,7 +106,7 @@
           },
           doWarn: function () {
             sparrow.warn('确认警告', function (btn) {
-              sparrow.showMessage(btn, 'warn');
+              sparrow.showMessage(btn, 'warning');
             });
           },
           showFloatInfo: function () {
@@ -115,7 +116,10 @@
             sparrow.showMessage('成功提示', 'success');
           },
           showFloatWarning: function () {
-            sparrow.showMessage('错误提示', 'warn');
+            sparrow.showMessage('警告提示', 'warning');
+          },
+          showFloatDanger: function () {
+            sparrow.showMessage('危险提示', 'danger');
           },
           openDialog: function () {
 

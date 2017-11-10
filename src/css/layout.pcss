@@ -50,7 +50,9 @@
 .fit > * > input {
   width: 100%;
 }
-
+.page {
+  position: absolute;
+}
 .page {
   top: 0;
   left: 0;
@@ -84,4 +86,12 @@
 }
 .header {
   z-index: 5;
+}
+
+.page > .header {
+  height: 50px;
+}
+
+.page > .header + .content {
+  top: 50px;
 }
