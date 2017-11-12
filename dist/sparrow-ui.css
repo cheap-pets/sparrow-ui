@@ -1550,6 +1550,7 @@ a.tree-node-item:hover {
   background-color: #4caf50;
   color: #fff
 }
+.warn,
 .warning {
   background-color: #ff9800;
   color: #fff
@@ -1823,6 +1824,7 @@ a.tree-node-item:hover {
 }
 .bar .btn-group:not(:first-child),
 .bar .btn:not(:first-child),
+.bar .dropdown-group:not(:first-child),
 .bar .input-group:not(:first-child),
 .bar input:not(:first-child) {
   margin-left: 5px
