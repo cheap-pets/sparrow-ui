@@ -1323,6 +1323,7 @@ input.edit-field:focus + .input-icon {
   border-right: 1px solid #e0e0e0
 }
 .table td,
+.table th,
 .table-cell {
   color: #333;
   padding: 10px;
@@ -1376,6 +1377,9 @@ input.edit-field:focus + .input-icon {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis
+}
+.list-group-item.hidden {
+  display: none
 }
 .list-group-item > * {
   line-height: 20px
@@ -1651,13 +1655,15 @@ a.tree-node-item:hover {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%)
 }
-.dialog > * {
+.dialog > *,
+.float-panel > * {
   position: absolute;
   overflow: hidden;
   left: 0;
   right: 0
 }
-.dialog-header {
+.dialog-header,
+.float-header {
   top: 0;
   padding: 15px 50px 15px 15px;
   font-weight: 500;
@@ -1684,25 +1690,32 @@ a.tree-node-item:hover {
 .dialog-close-btn:hover {
   color: #2196f3
 }
-.dialog-body {
+.dialog-body,
+.float-body {
   top: 0;
   bottom: 54px;
   overflow: auto;
   padding: 15px 20px;
   line-height: 20px
 }
-.dialog-header + .dialog-body {
+.dialog-header + .dialog-body,
+.float-header + .float-body {
   top: 50px
 }
-.dialog-footer {
+.dialog-footer,
+.float-footer {
   bottom: 0;
   height: 54px;
   padding: 10px 15px;
   text-align: right;
   background-color: #f5f5f5
 }
-.dialog-footer > .btn {
-  min-width: 80px
+.float-footer {
+  text-align: center
+}
+.dialog-footer > .btn,
+.float-footer > .btn {
+  min-width: 100px
 }
 .dialog-footer > .btn + .btn {
   margin-left: 10px

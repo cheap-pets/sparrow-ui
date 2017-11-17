@@ -59,7 +59,7 @@
         <span class="icon icon-ok"></span>
         <span>{{node.name}}-{{level}}</span>
         <a class="btn">
-          <div class="icon icon-option-hori"></div>
+          <span class="icon icon-option-hori"></span>
         </a>
       </a>
       <div v-if="expanded">
@@ -112,7 +112,7 @@
       }
     });
     //全局注册树组件
-    Vue.component('tree-node', {
+    var treeNode = {
       template: '#tree-node-template',
       props: ['node', 'level'],
       computed: {
@@ -134,10 +134,14 @@
           this.$store.commit('toggleNode', node);
         }
       }
-    });
+    };
+    //Vue.component('tree-node', treeNode);
     new Vue({
       store: store,
       el: '#tree',
+      components: {
+        'tree-node': treeNode
+      },
       computed: {
         roots: function () {
           return this.$store.state.roots;

@@ -16,12 +16,14 @@
   opacity: 1;
   transform: translateY(-50%);
 }
+.float-panel > *,
 .dialog > * {
   position: absolute;
   overflow: hidden;
   left: 0;
   right: 0;
 }
+.float-header,
 .dialog-header {
   top: 0;
   padding: 15px 50px 15px 15px;
@@ -49,6 +51,7 @@
 .dialog-close-btn:hover {
   color: $blue2;
 }
+.float-body,
 .dialog-body {
   top: 0;
   bottom: 54px;
@@ -56,9 +59,11 @@
   padding: 15px 20px;
   line-height: 20px;
 }
+.float-header + .float-body,
 .dialog-header + .dialog-body {
   top: 50px;
 }
+.float-footer,
 .dialog-footer {
   bottom: 0;
   height: 54px;
@@ -66,8 +71,12 @@
   text-align: right;
   background-color: $grey6;
 }
+.float-footer {
+  text-align: center;
+}
+.float-footer > .btn,
 .dialog-footer > .btn {
-  min-width: 80px;
+  min-width: 100px;
 }
 .dialog-footer > .btn + .btn {
   margin-left: 10px;

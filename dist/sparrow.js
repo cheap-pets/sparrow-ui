@@ -355,8 +355,8 @@ document.addEventListener(clickEvent, function (event) {
   var level = 0;
   while (el && el !== document.body && level < 5) {
     action || (action = getAction(el));
-    if (el.className.indexOf('modal-mask') >= 0) {
-      action || (action = 'close');
+    if (el.classList.contains('modal-mask')) {
+      level === 0 && (action || (action = 'close'));
       popup = el;
     } else {
       var selector = getTargetSelector(el);

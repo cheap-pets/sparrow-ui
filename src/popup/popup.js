@@ -48,8 +48,8 @@ document.addEventListener(clickEvent, function(event) {
   let level = 0;
   while (el && el !== document.body && level < 5) {
     action || (action = getAction(el));
-    if (el.className.indexOf('modal-mask') >= 0) {
-      action || (action = 'close');
+    if (el.classList.contains('modal-mask')) {
+      (level === 0) && (action || (action = 'close'));
       popup = el;
     } else {
       const selector = getTargetSelector(el);
@@ -60,7 +60,7 @@ document.addEventListener(clickEvent, function(event) {
         isGroupElement(el) && (popup = queryPopup(el));
       }
     }
-    el = popup || popup === false ? null : el.parentNode;
+    el = (popup || popup === false) ? null : el.parentNode;
     level++;
   }
   //获取并隐藏之前弹出的元素
