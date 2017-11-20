@@ -108,7 +108,10 @@ $btn-negative-font-color: $white;
  {
   border-width: 0;
   background-color: $btn-default-disable-color;
-  cursor: pointer;
+}
+.btn[disabled] .caret:after,
+.btn:disabled .caret:after {
+  border-top-color: rgba(255, 255, 255, .75);
 }
 .btn-primary {
   background-color: $btn-primary-color;

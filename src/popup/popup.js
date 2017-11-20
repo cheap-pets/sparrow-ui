@@ -52,13 +52,16 @@ document.addEventListener(clickEvent, function(event) {
       (level === 0) && (action || (action = 'close'));
       popup = el;
     } else {
+      if ('disabled' in el.attributes || el.classList.contains('disabled')) {
+        break;
+      }
       const selector = getTargetSelector(el);
       if (selector) {
         popup = document.querySelector(selector) || false;
-        action || (action = 'open');
       } else {
         isGroupElement(el) && (popup = queryPopup(el));
       }
+      action || (popup && (action = 'open'));
     }
     el = (popup || popup === false) ? null : el.parentNode;
     level++;

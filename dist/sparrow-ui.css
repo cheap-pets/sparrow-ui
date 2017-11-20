@@ -780,8 +780,11 @@ a:hover {
 .btn:disabled,
 .btn[disabled] {
   border-width: 0;
-  background-color: #e0e0e0;
-  cursor: pointer
+  background-color: #e0e0e0
+}
+.btn:disabled .caret:after,
+.btn[disabled] .caret:after {
+  border-top-color: rgba(255,255,255,.75)
 }
 .btn-primary {
   background-color: #2196f3;
@@ -1488,7 +1491,7 @@ a.tree-node-item:hover {
   left: 0;
   z-index: 200;
   display: block;
-  padding: 4px 0;
+  padding: 0;
   max-width: 500px;
   position: absolute;
   visibility: hidden;
@@ -1502,7 +1505,9 @@ a.tree-node-item:hover {
   transition: opacity .1s ease-in-out
 }
 .dropdown.menu {
-  border: 0
+  border: 0;
+  padding-top: 4px;
+  padding-bottom: 4px
 }
 .dropdown:not(.top) {
   top: 100%;
